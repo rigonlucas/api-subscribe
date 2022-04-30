@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('field_responses', function (Blueprint $table) {
-            $table->id();
-            $table->uuid()->unique();
+            $table->uuid('id')->primary();
             $table->foreignIdFor(\App\Models\FieldAsk::class);
             $table->foreignIdFor(\App\Models\Process::class);
             $table->foreignIdFor(\App\Models\ProcessPeople::class);

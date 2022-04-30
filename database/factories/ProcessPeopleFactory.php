@@ -21,7 +21,6 @@ class ProcessPeopleFactory extends Factory
         /** @var Process $process */
         $process = Process::all()->random();
         return [
-            'uuid' => $this->faker->uuid(),
             'process_id' => $process->id,
             'user_id' => User::factory()->create()
         ];

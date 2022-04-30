@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('process_payment_people', function (Blueprint $table) {
-            $table->id();
-            $table->uuid()->unique();
+            $table->uuid('id')->primary();
             $table->foreignIdFor(\App\Models\Process::class);
             $table->foreignIdFor(\App\Models\User::class);
             $table->timestampsTz();

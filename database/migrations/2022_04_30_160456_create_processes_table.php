@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('processes', function (Blueprint $table) {
-            $table->id();
-            $table->uuid()->unique();
+            $table->uuid('id')->primary();
             $table->foreignIdFor(\App\Models\ProcessType::class);
             $table->string('name', 500);
             $table->text('description');

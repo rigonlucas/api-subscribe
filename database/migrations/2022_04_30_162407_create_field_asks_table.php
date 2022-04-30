@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('field_asks', function (Blueprint $table) {
-            $table->id();
-            $table->uuid()->unique();
+            $table->uuid('id')->primary();
             $table->foreignIdFor(\App\Models\FieldGroups::class);
             $table->string('name', 255);
             $table->enum('field_type', \App\Enums\FieldTypeEnum::all());

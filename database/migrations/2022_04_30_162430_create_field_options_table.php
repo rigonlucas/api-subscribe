@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('field_options', function (Blueprint $table) {
-            $table->foreignIdFor(\App\Models\FieldResponse::class);
-            $table->foreignIdFor(\App\Models\FieldOption::class);
-            $table->text('response_text');
+            $table->uuid('id')->primary();
+            $table->foreignIdFor(\App\Models\FieldAsk::class);
+            $table->text('name');
             $table->timestampsTz();
             $table->softDeletesTz();
         });

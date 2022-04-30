@@ -19,7 +19,6 @@ class ProcessFactory extends Factory
     public function definition()
     {
         return [
-            'uuid' => $this->faker->unique()->uuid(),
             'process_type_id' => ProcessType::factory()->create(),
             'name' => $this->faker->word(),
             'description' => $this->faker->text(100),
