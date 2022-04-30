@@ -17,7 +17,8 @@ class PaymentValueFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'value' => $this->faker->numberBetween(0, 100)
         ];
     }
 }
