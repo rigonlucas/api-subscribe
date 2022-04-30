@@ -19,6 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call(PaymentTypeSeeder::class);
         $this->call(ProcessTypeSeeder::class);
 
+        //process
+        $this->call(ProcessSeeder::class);
+        $this->call(ProcessPeopleSeeder::class);
+        $this->call(ProcessPaymentSeeder::class);
+
 
     }
 }

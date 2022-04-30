@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\PaymentType;
+use App\Models\PaymentValue;
+use App\Models\Process;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,10 @@ class ProcessPaymentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'uuid' => $this->faker->uuid(),
+            'payment_type_id' => PaymentType::factory()->create(),
+            'process_id' => Process::factory()->create(),
+            'payment_value_id' => PaymentValue::factory()->create()
         ];
     }
 }

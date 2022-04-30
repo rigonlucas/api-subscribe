@@ -14,6 +14,6 @@ class ProcessPeopleSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\ProcessPeople::factory(10)->create();
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Process;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,12 @@ class ProcessPeopleFactory extends Factory
      */
     public function definition()
     {
+        /** @var Process $process */
+        $process = Process::all()->random();
         return [
-            //
+            'uuid' => $this->faker->uuid(),
+            'process_id' => $process->id,
+            'user_id' => User::factory()->create()
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\ProcessType;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,15 @@ class ProcessFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'uuid' => $this->faker->unique()->uuid(),
+            'process_type_id' => ProcessType::factory()->create(),
+            'name' => $this->faker->word(),
+            'description' => $this->faker->text(100),
+            'tamb_link' => $this->faker->text(100),
+            'active' => $this->faker->boolean(),
+            'is_public' => $this->faker->boolean(),
+            'start_at' => Carbon::now()->subDay(rand(1, 90)),
+            'finish_at' => Carbon::now()->addDay(rand(0, 90))
         ];
     }
 }
