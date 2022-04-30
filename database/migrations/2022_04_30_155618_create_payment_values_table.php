@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payment_values', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name', 255);
             $table->decimal('value');
             $table->timestampsTz();
