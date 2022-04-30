@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('process_payments', function (Blueprint $table) {
             $table->id();
-            $table->uuid();
+            $table->uuid()->unique();
             $table->foreignIdFor(\App\Models\PaymentType::class);
             $table->foreignIdFor(\App\Models\Process::class);
             $table->foreignIdFor(\App\Models\PaymentType::class);
