@@ -11,7 +11,7 @@ enum FieldTypeEnum
     case SELECT_SINGLE;
     case SELECT_MULTIPLE;
 
-    public static function all ()
+    public static function all (): array
     {
         return array_column(self::cases(), 'name');
     }

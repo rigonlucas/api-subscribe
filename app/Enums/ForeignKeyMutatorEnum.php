@@ -13,7 +13,7 @@ enum ForeignKeyMutatorEnum: string
     /**
      * @throws \Exception
      */
-    public static function findByCaseName ($className)
+    public static function findByCaseName ($className): string
     {
         $exploded = explode("\\", $className);
         $countOfExplode = count($exploded);
