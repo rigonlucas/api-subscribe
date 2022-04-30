@@ -19,7 +19,6 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'uuid' => $this->faker->unique()->uuid(),
             'document' => $this->faker->numberBetween(1000000, 9999999),
             'document_type' => $this->faker->word(),
             'email' => $this->faker->unique()->safeEmail(),
