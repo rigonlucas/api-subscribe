@@ -13,11 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('field_responses', function (Blueprint $table) {
+        $processPeopleClass = \App\Models\ProcessPeople::class;
+        Schema::create('field_responses', function (Blueprint $table) use ($processPeopleClass) {
             $table->uuid('id')->primary();
             $table->foreignIdFor(\App\Models\FieldAsk::class);
             $table->foreignIdFor(\App\Models\Process::class);
-            $table->foreignIdFor(\App\Models\ProcessPeople::class);
+            $table->foreignIdFor(
+                $processPeopleClass,
+                \App\Enums\ForeignKeyMutatorEnum::findByCaseName($processPeopleClass)
+            );
             $table->timestampsTz();
             $table->softDeletesTz();
         });

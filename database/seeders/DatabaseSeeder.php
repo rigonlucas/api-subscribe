@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProcessPeopleSeeder::class);
         $this->call(ProcessPaymentSeeder::class);
 
-
+        //payment user
     }
 }
