@@ -5,17 +5,38 @@ namespace App\Http\Controllers\Payment;
 use App\Core\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\DeletePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\DeletePaymentTypeInput;
+use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\ListPaymentTypeInput;
+use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\RestorePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\CreatePaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\RestorePaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\UpdatePaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\UpdatePaymentTypeUseCase;
+use App\Core\Admin\Infra\Support\Pagination\PaginationInput;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PaymentTypeController extends Controller
 {
-    public function store(Request $request)
+    public function search(Request $request): JsonResponse
+    {
+        $input = new ListPaymentTypeInput($request->input('name', null));
+
+        $paginationInput = new PaginationInput(
+            $request->input('page'),
+            $request->input('per_page')
+        );
+
+        /** @var ListPaymentTypeUseCase $useCase */
+        $useCase = app(ListPaymentTypeUseCase::class);
+        $output = $useCase->execute($input, $paginationInput);
+
+        return response()->json(['data' => $output]);
+    }
+
+    public function store(Request $request): JsonResponse
     {
         $input = new CreatePaymentTypeInput($request->input('name', ''));
 
@@ -23,11 +44,10 @@ class PaymentTypeController extends Controller
         $useCase = app(CreatePaymentTypeUseCase::class);
         $output = $useCase->execute($input);
 
-        return response()->json([$output->id], 201);
+        return response()->json(['id' => $output->id]);
     }
 
-
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): Response
     {
         $input = new UpdatePaymentTypeInput(
             $id,
@@ -41,8 +61,7 @@ class PaymentTypeController extends Controller
         return response()->noContent();
     }
 
-
-    public function delete(string $id)
+    public function delete(string $id): Response
     {
         $input = new DeletePaymentTypeInput(
             $id,
@@ -55,8 +74,7 @@ class PaymentTypeController extends Controller
         return response()->noContent();
     }
 
-
-    public function restore(string $id)
+    public function restore(string $id): JsonResponse
     {
         $input = new RestorePaymentTypeInput(
             $id,
