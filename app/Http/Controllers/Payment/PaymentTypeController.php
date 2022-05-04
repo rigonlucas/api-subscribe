@@ -33,7 +33,7 @@ class PaymentTypeController extends Controller
         $useCase = app(ListPaymentTypeUseCase::class);
         $output = $useCase->execute($input, $paginationInput);
 
-        return response()->json(['data' => $output]);
+        return response()->json($output->dados);
     }
 
     public function store(Request $request): JsonResponse
