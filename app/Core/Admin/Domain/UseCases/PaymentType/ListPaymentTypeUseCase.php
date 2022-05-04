@@ -13,7 +13,8 @@ class ListPaymentTypeUseCase
     {
     }
 
-    public function execute(ListPaymentTypeInput $input){
+    public function execute(ListPaymentTypeInput $input)
+    {
 
     }
 }

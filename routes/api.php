@@ -15,5 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('type/payments/values/', [PaymentTypeController::class, 'store'])->name('payment.type.store');
-Route::put('type/payments/values/{id}', [PaymentTypeController::class, 'update'])->name('payment.type.update');
+Route::post('type/payments-type/store', [PaymentTypeController::class, 'store'])
+    ->name('payment.type.store');
+Route::put('type/payments-type/{id}/update', [PaymentTypeController::class, 'update'])
+    ->name('payment.type.update');
+Route::delete('type/payments-type/{id}/delete', [PaymentTypeController::class, 'delete'])
+    ->name('payment.type.delete');
+Route::put('type/payments-type/{id}/restore', [PaymentTypeController::class, 'restore'])
+    ->name('payment.type.restore');

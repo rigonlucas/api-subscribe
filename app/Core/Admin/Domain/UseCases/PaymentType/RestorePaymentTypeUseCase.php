@@ -5,10 +5,10 @@ namespace App\Core\Admin\Domain\UseCases\PaymentType;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
 use App\Core\Admin\Domain\Entities\Payment\PaymentTypesEntity;
 use App\Core\Admin\Domain\Exceptions\PaymentType\PaymentTypeNotFoundException;
-use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\DeletePaymentTypeInput;
-use App\Core\Admin\Domain\UseCases\PaymentType\Outputs\DeletePaymentTypeOutput;
+use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\RestorePaymentTypeInput;
+use App\Core\Admin\Domain\UseCases\PaymentType\Outputs\RestorePaymentTypeOutput;
 
-class DeletePaymentTypeUseCase
+class RestorePaymentTypeUseCase
 {
     public function __construct(
         protected PaymentTypeWriteInterface $paymentTypeWrite
@@ -16,16 +16,16 @@ class DeletePaymentTypeUseCase
     {
     }
 
-    public function execute(DeletePaymentTypeInput $input)
+    public function execute(RestorePaymentTypeInput $input)
     {
         $paymentTypeEntity = new PaymentTypesEntity($input->id, '');
 
-        $paymentId = $this->paymentTypeWrite->delete($paymentTypeEntity);
+        $paymentId = $this->paymentTypeWrite->restore($paymentTypeEntity);
 
         if(!$paymentId) {
             throw new PaymentTypeNotFoundException();
         }
 
-        return new DeletePaymentTypeOutput($paymentId);
+        return new RestorePaymentTypeOutput($paymentId);
     }
 }
