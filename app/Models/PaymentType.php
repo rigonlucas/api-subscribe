@@ -10,4 +10,8 @@ class PaymentType extends Model
 {
     use HasFactory;
     use Uuids;
+
+    protected $fillable = [
+        'name'
+    ];
 }
