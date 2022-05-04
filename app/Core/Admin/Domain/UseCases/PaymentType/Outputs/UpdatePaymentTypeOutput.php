@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Core\Admin\Domain\UseCases\PaymentType\Inputs;
+namespace App\Core\Admin\Domain\UseCases\PaymentType\Outputs;
 
 class UpdatePaymentTypeOutput
 {
-    public function __construct(public readonly string $id,public readonly string $name)
+    public function __construct(public readonly string $id)
     {
     }
 }

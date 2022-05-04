@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('type/payments/values/', [PaymentTypeController::class, 'store'])->name('payment.type.store');
+Route::put('type/payments/values/{id}', [PaymentTypeController::class, 'update'])->name('payment.type.update');

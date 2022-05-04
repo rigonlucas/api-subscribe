@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Payment;
 
 use App\Core\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\CreatePaymentTypeInput;
+use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\UpdatePaymentTypeInput;
+use App\Core\Admin\Domain\UseCases\PaymentType\UpdatePaymentTypeUseCase;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -18,5 +20,20 @@ class PaymentTypeController extends Controller
         $output = $useCase->execute($input);
 
         return response()->json([$output->id], 201);
+    }
+
+
+    public function update(Request $request, string $id)
+    {
+        $input = new UpdatePaymentTypeInput(
+            $id,
+            $request->input('name', ''),
+        );
+
+        /** @var UpdatePaymentTypeUseCase $useCase */
+        $useCase = app(UpdatePaymentTypeUseCase::class);
+        $useCase->execute($input);
+
+        return response()->noContent();
     }
 }
