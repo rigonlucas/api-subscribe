@@ -17,7 +17,7 @@ class ListPaymentTypeUseCase
 
     public function execute(ListPaymentTypeInput $input, PaginationInput $paginationInput): ListPaymentTypeOutput
     {
-        list($data, $meta) = $this->paymentTypeRead->listAll($paginationInput, $input->searchName);
+        list($data, $meta) = $this->paymentTypeRead->listPaginated($paginationInput, $input->searchName);
         return new ListPaymentTypeOutput($data, $meta);
     }
 }
