@@ -14,10 +14,12 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
 
     public function store(PaymentTypesEntity $paymentTypesEntity): string
     {
-        $this->deleteCache(CacheKeysEnum::PAYMENT_TYPE->value);
         $paymentTypeModel = PaymentType::create([
             'name' => $paymentTypesEntity->name
         ]);
+        if ($paymentTypeModel) {
+            $this->deleteCache(CacheKeysEnum::PREFIX_PAYMENT_TYPE->value);
+        }
         return $paymentTypeModel->id;
     }
 
@@ -27,9 +29,13 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
         if (!$paymentTypeModel) {
             return null;
         }
-        $paymentTypeModel->update([
+        $updatedRegister = $paymentTypeModel->update([
             'name' => $paymentTypesEntity->name
         ]);
+
+        if ($updatedRegister > 0) {
+            $this->deleteCache(CacheKeysEnum::PREFIX_PAYMENT_TYPE->value);
+        }
 
         return $paymentTypeModel->id;
     }

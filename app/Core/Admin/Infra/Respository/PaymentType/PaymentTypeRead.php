@@ -35,8 +35,11 @@ class PaymentTypeRead extends PreparePagination implements PaymentTypeReadInterf
     public function listAllCached(): array
     {
         return $this->createCache(
-            CacheKeysEnum::PAYMENT_TYPE->value,
-            DB::table('payment_types')->whereNull('deleted_at')->select(['id', 'name'])
+            CacheKeysEnum::PREFIX_PAYMENT_TYPE->value,
+            DB::table('payment_types')
+                ->select(['id', 'name'])
+                ->whereNull('deleted_at')
+                ->orderBy('name')
         )->toArray();
     }
 }
