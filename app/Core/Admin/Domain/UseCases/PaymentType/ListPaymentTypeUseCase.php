@@ -5,7 +5,7 @@ namespace App\Core\Admin\Domain\UseCases\PaymentType;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeReadInterface;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\ListPaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\Outputs\ListPaymentTypeOutput;
-use App\Core\Admin\Infra\Support\Pagination\PaginationInput;
+use App\Core\Admin\Infra\Support\Pagination\Inputs\PaginationInput;
 
 class ListPaymentTypeUseCase
 {
@@ -17,7 +17,7 @@ class ListPaymentTypeUseCase
 
     public function execute(ListPaymentTypeInput $input, PaginationInput $paginationInput): ListPaymentTypeOutput
     {
-        $dados = $this->paymentTypeRead->listAll($paginationInput, $input->searchName);
-        return new ListPaymentTypeOutput($dados);
+        list($data, $meta) = $this->paymentTypeRead->listAll($paginationInput, $input->searchName);
+        return new ListPaymentTypeOutput($data, $meta);
     }
 }

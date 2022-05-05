@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Admin\Infra\Support\Pagination;
+namespace App\Core\Admin\Infra\Support\Pagination\Inputs;
 
 class PaginationInput
 {

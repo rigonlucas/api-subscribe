@@ -3,8 +3,8 @@
 namespace App\Core\Admin\Infra\Respository\PaymentType;
 
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeReadInterface;
-use App\Core\Admin\Infra\Support\Pagination\PaginationInput;
-use App\Core\Admin\Infra\Support\Pagination\PreparePagination;
+use App\Core\Admin\Infra\Support\Pagination\Inputs\PaginationInput;
+use App\Core\Admin\Infra\Support\Pagination\Inputs\PreparePagination;
 use App\Models\PaymentType;
 
 class PaymentTypeRead extends PreparePagination implements PaymentTypeReadInterface

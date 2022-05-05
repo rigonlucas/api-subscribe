@@ -2,7 +2,7 @@
 
 namespace App\Core\Admin\Domain\Contracts\Repository\PaymentType;
 
-use App\Core\Admin\Infra\Support\Pagination\PaginationInput;
+use App\Core\Admin\Infra\Support\Pagination\Inputs\PaginationInput;
 
 interface PaymentTypeReadInterface
 {
