@@ -7,6 +7,8 @@ use App\Core\Admin\Infra\Support\Pagination\Inputs\PaginationInput;
 interface PaymentTypeReadInterface
 {
 
-    public function listAll (PaginationInput $paginationInput, ?string $name = null): array;
+    public function listPaginated (PaginationInput $paginationInput, ?string $name = null): array;
+
+    public function listAllCached (): array;
 
 }

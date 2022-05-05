@@ -6,6 +6,7 @@ use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeReadInterf
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
 use App\Core\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
+use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeWithCacheUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\RestorePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\UpdatePaymentTypeUseCase;
 use App\Core\Admin\Infra\Respository\PaymentType\PaymentTypeRead;
@@ -48,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->when(
-            [ListPaymentTypeUseCase::class]
+            [ListPaymentTypeUseCase::class, ListPaymentTypeWithCacheUseCase::class]
         )->needs(
             PaymentTypeReadInterface::class
         )->give(

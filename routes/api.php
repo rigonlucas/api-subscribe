@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('type/payments-type/', [PaymentTypeController::class, 'index'])
+    ->name('payment.type.index');
 Route::get('type/payments-type/search', [PaymentTypeController::class, 'search'])
     ->name('payment.type.search');
 Route::post('type/payments-type/store', [PaymentTypeController::class, 'store'])

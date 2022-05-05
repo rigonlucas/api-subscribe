@@ -10,6 +10,7 @@ use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\ListPaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\RestorePaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\UpdatePaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
+use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeWithCacheUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\RestorePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\UpdatePaymentTypeUseCase;
 use App\Core\Admin\Infra\Support\Pagination\Inputs\PaginationInput;
@@ -20,6 +21,15 @@ use Illuminate\Http\Response;
 
 class PaymentTypeController extends Controller
 {
+    public function index()
+    {
+        /** @var ListPaymentTypeWithCacheUseCase $useCase */
+        $useCase = app(ListPaymentTypeWithCacheUseCase::class);
+        $output = $useCase->execute();
+
+        return response()->json($output->data);
+    }
+
     public function search(Request $request): JsonResponse
     {
         $input = new ListPaymentTypeInput($request->input('name', null));
