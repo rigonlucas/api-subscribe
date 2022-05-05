@@ -46,7 +46,10 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
         if (!$paymentTypeModel) {
             return null;
         }
-        $paymentTypeModel->delete();
+        $deletedItem = $paymentTypeModel->delete();
+        if ($deletedItem) {
+            $this->deleteCache(CacheKeysEnum::PREFIX_PAYMENT_TYPE->value);
+        }
 
         return $paymentTypeModel->id;
     }
@@ -57,7 +60,11 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
         if (!$paymentTypeModel) {
             return null;
         }
-        $paymentTypeModel->restore();
+        $restoreditem = $paymentTypeModel->restore();
+
+        if ($restoreditem) {
+            $this->deleteCache(CacheKeysEnum::PREFIX_PAYMENT_TYPE->value);
+        }
 
         return $paymentTypeModel->id;
     }

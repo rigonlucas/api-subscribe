@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeReadInterface;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
 use App\Core\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
+use App\Core\Admin\Domain\UseCases\PaymentType\DeletePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeWithCacheUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\RestorePaymentTypeUseCase;
@@ -41,7 +42,12 @@ class AppServiceProvider extends ServiceProvider
     private function bindPaymentType(): void
     {
         $this->app->when(
-            [CreatePaymentTypeUseCase::class, UpdatePaymentTypeUseCase::class, RestorePaymentTypeUseCase::class]
+            [
+                CreatePaymentTypeUseCase::class,
+                UpdatePaymentTypeUseCase::class,
+                RestorePaymentTypeUseCase::class,
+                DeletePaymentTypeUseCase::class
+            ]
         )->needs(
             PaymentTypeWriteInterface::class
         )->give(
