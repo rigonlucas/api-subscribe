@@ -14,7 +14,7 @@ class PaymentValueWrite implements PaymentValueWriteInterface
 
     public function store(PaymentValueEntity $paymentValueEntity): string
     {
-        $paymentValueModel = PaymentValue::create([
+        $paymentValueModel = PaymentValue::query()->create([
             'name' => $paymentValueEntity->name,
             'value' => $paymentValueEntity->value
         ]);

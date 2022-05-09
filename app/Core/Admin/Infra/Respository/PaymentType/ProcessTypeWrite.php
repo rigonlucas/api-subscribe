@@ -3,19 +3,19 @@
 namespace App\Core\Admin\Infra\Respository\PaymentType;
 
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
-use App\Core\Admin\Domain\Entities\Payment\PaymentTypesEntity;
+use App\Core\Admin\Domain\Entities\Payment\PaymentTypeEntity;
 use App\Core\Admin\Infra\Enums\CacheKeysEnum;
 use App\Core\Admin\Infra\Support\Cache\CacheManager;
 use App\Models\PaymentType;
 
-class PaymentTypeWrite implements PaymentTypeWriteInterface
+class ProcessTypeWrite implements PaymentTypeWriteInterface
 {
     use CacheManager;
 
-    public function store(PaymentTypesEntity $paymentTypesEntity): string
+    public function store(PaymentTypeEntity $paymentTypeEntity): string
     {
         $paymentTypeModel = PaymentType::create([
-            'name' => $paymentTypesEntity->name
+            'name' => $paymentTypeEntity->name
         ]);
         if ($paymentTypeModel) {
             $this->deleteCache(CacheKeysEnum::PREFIX_PAYMENT_TYPE->value);
@@ -23,14 +23,14 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
         return $paymentTypeModel->id;
     }
 
-    public function update(PaymentTypesEntity $paymentTypesEntity): ?string
+    public function update(PaymentTypeEntity $paymentTypeEntity): ?string
     {
-        $paymentTypeModel = PaymentType::query()->find($paymentTypesEntity->id);
+        $paymentTypeModel = PaymentType::query()->find($paymentTypeEntity->id);
         if (!$paymentTypeModel) {
             return null;
         }
         $updatedRegister = $paymentTypeModel->update([
-            'name' => $paymentTypesEntity->name
+            'name' => $paymentTypeEntity->name
         ]);
 
         if ($updatedRegister > 0) {
@@ -40,9 +40,9 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
         return $paymentTypeModel->id;
     }
 
-    public function delete(PaymentTypesEntity $paymentTypesEntity): ?string
+    public function delete(PaymentTypeEntity $paymentTypeEntity): ?string
     {
-        $paymentTypeModel = PaymentType::query()->find($paymentTypesEntity->id);
+        $paymentTypeModel = PaymentType::query()->find($paymentTypeEntity->id);
         if (!$paymentTypeModel) {
             return null;
         }
@@ -54,9 +54,9 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
         return $paymentTypeModel->id;
     }
 
-    public function restore(PaymentTypesEntity $paymentTypesEntity): ?string
+    public function restore(PaymentTypeEntity $paymentTypeEntity): ?string
     {
-        $paymentTypeModel = PaymentType::onlyTrashed()->find($paymentTypesEntity->id);
+        $paymentTypeModel = PaymentType::onlyTrashed()->find($paymentTypeEntity->id);
         if (!$paymentTypeModel) {
             return null;
         }

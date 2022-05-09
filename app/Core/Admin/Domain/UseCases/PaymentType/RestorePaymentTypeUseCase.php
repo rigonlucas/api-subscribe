@@ -3,7 +3,7 @@
 namespace App\Core\Admin\Domain\UseCases\PaymentType;
 
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
-use App\Core\Admin\Domain\Entities\Payment\PaymentTypesEntity;
+use App\Core\Admin\Domain\Entities\Payment\PaymentTypeEntity;
 use App\Core\Admin\Domain\Exceptions\PaymentType\PaymentTypeNotFoundException;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\RestorePaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\Outputs\RestorePaymentTypeOutput;
@@ -18,7 +18,7 @@ class RestorePaymentTypeUseCase
 
     public function execute(RestorePaymentTypeInput $input)
     {
-        $paymentTypeEntity = new PaymentTypesEntity('', $input->id);
+        $paymentTypeEntity = new PaymentTypeEntity('', $input->id);
 
         $paymentId = $this->paymentTypeWrite->restore($paymentTypeEntity);
 

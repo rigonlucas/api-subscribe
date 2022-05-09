@@ -3,8 +3,10 @@
 namespace App\Core\Admin\Domain\UseCases\PaymentType;
 
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
-use App\Core\Admin\Domain\Entities\Payment\PaymentTypesEntity;
+use App\Core\Admin\Domain\Contracts\Repository\PaymentType\ProcessTypeWriteInterface;
+use App\Core\Admin\Domain\Entities\Payment\PaymentTypeEntity;
 use App\Core\Admin\Domain\Exceptions\PaymentType\PaymentTypeNotFoundException;
+use App\Core\Admin\Domain\Exceptions\PaymentType\ProcessTypeNotFoundException;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\UpdatePaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\Outputs\UpdatePaymentTypeOutput;
 
@@ -18,7 +20,7 @@ class UpdatePaymentTypeUseCase
 
     public function execute(UpdatePaymentTypeInput $input)
     {
-        $paymentTypeEntity = new PaymentTypesEntity($input->name, $input->id);
+        $paymentTypeEntity = new PaymentTypeEntity($input->name, $input->id);
 
         $paymentId = $this->paymentTypeWrite->update($paymentTypeEntity);
 

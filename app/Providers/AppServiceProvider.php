@@ -6,22 +6,35 @@ use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeReadInterf
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueReadInterface;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueWriteInterface;
+use App\Core\Admin\Domain\Contracts\Repository\ProcessType\ProcessTypeReadInterface;
+use App\Core\Admin\Domain\Contracts\Repository\ProcessType\ProcessTypeWriteInterface;
+
 use App\Core\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\DeletePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeWithCacheUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\RestorePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\UpdatePaymentTypeUseCase;
+
 use App\Core\Admin\Domain\UseCases\PaymentValue\CreatePaymentValueUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentValue\DeletePaymentValueUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentValue\ListPaymentValueUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentValue\ListPaymentValueWithCacheUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentValue\RestorePaymentValueUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentValue\UpdatePaymentValueUseCase;
-use App\Core\Admin\Infra\Respository\PaymentType\PaymentTypeRead;
-use App\Core\Admin\Infra\Respository\PaymentType\PaymentTypeWrite;
+
+use App\Core\Admin\Domain\UseCases\ProcessType\CreateProcessTypeUseCase;
+use App\Core\Admin\Domain\UseCases\ProcessType\DeleteProcessTypeUseCase;
+use App\Core\Admin\Domain\UseCases\ProcessType\ListProcessTypeUseCase;
+use App\Core\Admin\Domain\UseCases\ProcessType\ListProcessTypeWithCacheUseCase;
+use App\Core\Admin\Domain\UseCases\ProcessType\RestoreProcessTypeUseCase;
+use App\Core\Admin\Domain\UseCases\ProcessType\UpdateProcessTypeUseCase;
+
+use App\Core\Admin\Infra\Respository\PaymentType\ProcessTypeWrite;
 use App\Core\Admin\Infra\Respository\PaymentValue\PaymentValueRead;
 use App\Core\Admin\Infra\Respository\PaymentValue\PaymentValueWrite;
+
+use App\Core\Admin\Infra\Respository\ProcessType\ProcessTypeRead;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -45,6 +58,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->bindPaymentType();
         $this->bindPaymentValue();
+        $this->bindProcessValue();
     }
 
     private function bindPaymentType(): void
@@ -59,7 +73,7 @@ class AppServiceProvider extends ServiceProvider
         )->needs(
             PaymentTypeWriteInterface::class
         )->give(
-            PaymentTypeWrite::class
+            ProcessTypeWrite::class
         );
 
         $this->app->when(
@@ -67,7 +81,7 @@ class AppServiceProvider extends ServiceProvider
         )->needs(
             PaymentTypeReadInterface::class
         )->give(
-            PaymentTypeRead::class
+            ProcessTypeRead::class
         );
     }
     private function bindPaymentValue(): void
@@ -91,6 +105,29 @@ class AppServiceProvider extends ServiceProvider
             PaymentValueReadInterface::class
         )->give(
             PaymentValueRead::class
+        );
+    }
+    private function bindProcessValue(): void
+    {
+        $this->app->when(
+            [
+                CreateProcessTypeUseCase::class,
+                UpdateProcessTypeUseCase::class,
+                RestoreProcessTypeUseCase::class,
+                DeleteProcessTypeUseCase::class
+            ]
+        )->needs(
+            ProcessTypeWriteInterface::class
+        )->give(
+            ProcessTypeWrite::class
+        );
+
+        $this->app->when(
+            [ListProcessTypeUseCase::class, ListProcessTypeWithCacheUseCase::class]
+        )->needs(
+            ProcessTypeReadInterface::class
+        )->give(
+            ProcessTypeRead::class
         );
     }
 }
