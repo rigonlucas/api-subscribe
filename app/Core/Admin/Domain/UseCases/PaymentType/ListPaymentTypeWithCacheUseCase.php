@@ -3,7 +3,7 @@
 namespace App\Core\Admin\Domain\UseCases\PaymentType;
 
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeReadInterface;
-use App\Core\Admin\Domain\UseCases\PaymentType\Outputs\ListPaymentTypeOutput;
+use App\Core\Admin\Domain\UseCases\PaymentType\Outputs\ListPaymentValueOutput;
 
 class ListPaymentTypeWithCacheUseCase
 {
@@ -13,9 +13,9 @@ class ListPaymentTypeWithCacheUseCase
     {
     }
 
-    public function execute(): ListPaymentTypeOutput
+    public function execute(): ListPaymentValueOutput
     {
-        return new ListPaymentTypeOutput(
+        return new ListPaymentValueOutput(
             $this->paymentTypeRead->listAllCached()
         );
     }

@@ -17,7 +17,7 @@ class CreatePaymentTypeUseCase
 
     public function execute(CreatePaymentTypeInput $input): CreatePaymentTypeOutput
     {
-        $paymentTypeEntity = new PaymentTypesEntity(null, $input->name);
+        $paymentTypeEntity = new PaymentTypesEntity($input->name, null);
 
         $paymentId = $this->paymentTypeWrite->store($paymentTypeEntity);
 

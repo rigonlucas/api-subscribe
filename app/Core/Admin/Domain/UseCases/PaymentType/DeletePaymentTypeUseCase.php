@@ -18,7 +18,7 @@ class DeletePaymentTypeUseCase
 
     public function execute(DeletePaymentTypeInput $input)
     {
-        $paymentTypeEntity = new PaymentTypesEntity($input->id, '');
+        $paymentTypeEntity = new PaymentTypesEntity('', $input->id);
 
         $paymentId = $this->paymentTypeWrite->delete($paymentTypeEntity);
 

@@ -18,7 +18,7 @@ class RestorePaymentTypeUseCase
 
     public function execute(RestorePaymentTypeInput $input)
     {
-        $paymentTypeEntity = new PaymentTypesEntity($input->id, '');
+        $paymentTypeEntity = new PaymentTypesEntity('', $input->id);
 
         $paymentId = $this->paymentTypeWrite->restore($paymentTypeEntity);
 

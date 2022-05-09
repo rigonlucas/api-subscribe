@@ -23,9 +23,9 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
         return $paymentTypeModel->id;
     }
 
-    public function update(PaymentTypesEntity $paymentTypesEntity): string|null
+    public function update(PaymentTypesEntity $paymentTypesEntity): ?string
     {
-        $paymentTypeModel = PaymentType::find($paymentTypesEntity->id);
+        $paymentTypeModel = PaymentType::query()->find($paymentTypesEntity->id);
         if (!$paymentTypeModel) {
             return null;
         }
@@ -40,9 +40,9 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
         return $paymentTypeModel->id;
     }
 
-    public function delete(PaymentTypesEntity $paymentTypesEntity): string|null
+    public function delete(PaymentTypesEntity $paymentTypesEntity): ?string
     {
-        $paymentTypeModel = PaymentType::find($paymentTypesEntity->id);
+        $paymentTypeModel = PaymentType::query()->find($paymentTypesEntity->id);
         if (!$paymentTypeModel) {
             return null;
         }
@@ -54,7 +54,7 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
         return $paymentTypeModel->id;
     }
 
-    public function restore(PaymentTypesEntity $paymentTypesEntity): string|null
+    public function restore(PaymentTypesEntity $paymentTypesEntity): ?string
     {
         $paymentTypeModel = PaymentType::onlyTrashed()->find($paymentTypesEntity->id);
         if (!$paymentTypeModel) {
