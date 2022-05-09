@@ -17,7 +17,7 @@ class CreateProcessTypeUseCase
 
     public function execute(CreateProcessTypeInput $input): CreateProcessTypeOutput
     {
-        $ProcessTypeEntity = new ProcessTypeEntity($input->name, null);
+        $ProcessTypeEntity = new ProcessTypeEntity($input->name, $input->description);
 
         $ProcessId = $this->ProcessTypeWrite->store($ProcessTypeEntity);
 

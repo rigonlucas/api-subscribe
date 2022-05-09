@@ -8,7 +8,7 @@ use App\Core\Admin\Infra\Enums\CacheKeysEnum;
 use App\Core\Admin\Infra\Support\Cache\CacheManager;
 use App\Models\PaymentType;
 
-class ProcessTypeWrite implements PaymentTypeWriteInterface
+class PaymentTypeWrite implements PaymentTypeWriteInterface
 {
     use CacheManager;
 

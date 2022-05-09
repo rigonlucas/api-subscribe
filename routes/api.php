@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Payment\PaymentTypeController;
 use App\Http\Controllers\Payment\PaymentValueController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Process\ProcessTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,4 +42,18 @@ Route::prefix('type')->group(function () {
         ->name('payment.value.delete');
     Route::put('payments-value/{id}/restore', [PaymentValueController::class, 'restore'])
         ->name('payment.value.restore');
+
+
+    Route::get('process-type/', [ProcessTypeController::class, 'index'])
+        ->name('process.type.index');
+    Route::get('process-type/search', [ProcessTypeController::class, 'search'])
+        ->name('process.type.search');
+    Route::post('process-type/store', [ProcessTypeController::class, 'store'])
+        ->name('process.type.store');
+    Route::put('process-type/{id}/update', [ProcessTypeController::class, 'update'])
+        ->name('process.type.update');
+    Route::delete('process-type/{id}/delete', [ProcessTypeController::class, 'delete'])
+        ->name('process.type.delete');
+    Route::put('process-type/{id}/restore', [ProcessTypeController::class, 'restore'])
+        ->name('process.type.restore');
 });

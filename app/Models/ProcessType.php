@@ -12,6 +12,7 @@ class ProcessType extends Model
     use HasFactory;
     use SoftDeletes;
     use Uuids;
+
     protected $fillable = [
         'name',
         'description',

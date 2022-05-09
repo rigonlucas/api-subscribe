@@ -16,9 +16,11 @@ class PaymentTypeRead extends PreparePagination implements PaymentTypeReadInterf
 
     public function listPaginated(PaginationInput $paginationInput, ?string $name = null): array
     {
-        $paymentTypeModel = PaymentType::query()->select([
+        $paymentTypeModel = PaymentType::withTrashed()->select([
             'id',
-            'name'
+            'name',
+            'created_at',
+            'deleted_at'
         ]);
         $paymentTypeModel->when(
             $name,

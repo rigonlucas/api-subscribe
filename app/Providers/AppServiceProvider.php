@@ -30,11 +30,12 @@ use App\Core\Admin\Domain\UseCases\ProcessType\ListProcessTypeWithCacheUseCase;
 use App\Core\Admin\Domain\UseCases\ProcessType\RestoreProcessTypeUseCase;
 use App\Core\Admin\Domain\UseCases\ProcessType\UpdateProcessTypeUseCase;
 
-use App\Core\Admin\Infra\Respository\PaymentType\ProcessTypeWrite;
+use App\Core\Admin\Infra\Respository\PaymentType\PaymentTypeWrite;
 use App\Core\Admin\Infra\Respository\PaymentValue\PaymentValueRead;
 use App\Core\Admin\Infra\Respository\PaymentValue\PaymentValueWrite;
 
 use App\Core\Admin\Infra\Respository\ProcessType\ProcessTypeRead;
+use App\Core\Admin\Infra\Respository\ProcessType\ProcessTypeWrite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -58,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->bindPaymentType();
         $this->bindPaymentValue();
-        $this->bindProcessValue();
+        $this->bindProcessType();
     }
 
     private function bindPaymentType(): void
@@ -73,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
         )->needs(
             PaymentTypeWriteInterface::class
         )->give(
-            ProcessTypeWrite::class
+            PaymentTypeWrite::class
         );
 
         $this->app->when(
@@ -107,7 +108,7 @@ class AppServiceProvider extends ServiceProvider
             PaymentValueRead::class
         );
     }
-    private function bindProcessValue(): void
+    private function bindProcessType(): void
     {
         $this->app->when(
             [

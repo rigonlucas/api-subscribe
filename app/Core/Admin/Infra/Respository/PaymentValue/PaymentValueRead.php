@@ -16,10 +16,12 @@ class PaymentValueRead extends PreparePagination implements PaymentValueReadInte
 
     public function listPaginated(PaginationInput $paginationInput, ?string $name = null): array
     {
-        $paymentValueModel = PaymentValue::query()->select([
+        $paymentValueModel = PaymentValue::withTrashed()->select([
             'id',
             'name',
-            'value'
+            'value',
+            'created_at',
+            'deleted_at'
         ]);
         $paymentValueModel->when(
             $name,
