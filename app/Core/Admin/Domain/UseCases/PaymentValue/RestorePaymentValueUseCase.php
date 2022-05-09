@@ -16,7 +16,7 @@ class RestorePaymentValueUseCase
     {
     }
 
-    public function execute(RestorePaymentValueInput $input)
+    public function execute(RestorePaymentValueInput $input): RestorePaymentValueOutput
     {
         $paymentValueEntity = new PaymentValueEntity('', 0, $input->id);
 

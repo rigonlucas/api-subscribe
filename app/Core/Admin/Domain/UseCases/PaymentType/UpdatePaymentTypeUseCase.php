@@ -18,7 +18,7 @@ class UpdatePaymentTypeUseCase
     {
     }
 
-    public function execute(UpdatePaymentTypeInput $input)
+    public function execute(UpdatePaymentTypeInput $input): UpdatePaymentTypeOutput
     {
         $paymentTypeEntity = new PaymentTypeEntity($input->name, $input->id);
 

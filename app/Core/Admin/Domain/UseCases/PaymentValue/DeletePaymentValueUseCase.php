@@ -16,7 +16,7 @@ class DeletePaymentValueUseCase
     {
     }
 
-    public function execute(DeletePaymentValueInput $input)
+    public function execute(DeletePaymentValueInput $input): DeletePaymentValueOutput
     {
         $paymentValueEntity = new PaymentValueEntity('', 0, $input->id);
 
