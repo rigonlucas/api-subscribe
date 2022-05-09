@@ -4,7 +4,7 @@ namespace App\Core\Admin\Domain\UseCases\ProcessType;
 
 use App\Core\Admin\Domain\Contracts\Repository\ProcessType\ProcessTypeReadInterface;
 use App\Core\Admin\Domain\UseCases\ProcessType\Inputs\ListProcessTypeInput;
-use App\Core\Admin\Domain\UseCases\ProcessType\Outputs\ListProcessValueOutput;
+use App\Core\Admin\Domain\UseCases\ProcessType\Outputs\ListProcessTypeOutput;
 use App\Core\Admin\Infra\Support\Pagination\Inputs\PaginationInput;
 
 class ListProcessTypeUseCase
@@ -15,9 +15,9 @@ class ListProcessTypeUseCase
     {
     }
 
-    public function execute(ListProcessTypeInput $input, PaginationInput $paginationInput): ListProcessValueOutput
+    public function execute(ListProcessTypeInput $input, PaginationInput $paginationInput): ListProcessTypeOutput
     {
         list($data, $meta) = $this->ProcessTypeRead->listPaginated($paginationInput, $input->searchName);
-        return new ListProcessValueOutput($data, $meta);
+        return new ListProcessTypeOutput($data, $meta);
     }
 }

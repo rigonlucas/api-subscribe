@@ -16,7 +16,7 @@ class UpdateProcessTypeUseCase
     {
     }
 
-    public function execute(UpdateProcessTypeInput $input)
+    public function execute(UpdateProcessTypeInput $input): UpdateProcessTypeOutput
     {
         $ProcessTypeEntity = new ProcessTypeEntity($input->name, $input->id);
 

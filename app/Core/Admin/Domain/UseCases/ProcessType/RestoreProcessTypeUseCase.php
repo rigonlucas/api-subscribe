@@ -16,7 +16,7 @@ class RestoreProcessTypeUseCase
     {
     }
 
-    public function execute(RestoreProcessTypeInput $input)
+    public function execute(RestoreProcessTypeInput $input): RestoreProcessTypeOutput
     {
         $ProcessTypeEntity = new ProcessTypeEntity('', $input->id);
 

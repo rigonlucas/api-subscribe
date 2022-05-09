@@ -16,7 +16,7 @@ class DeleteProcessTypeUseCase
     {
     }
 
-    public function execute(DeleteProcessTypeInput $input)
+    public function execute(DeleteProcessTypeInput $input): DeleteProcessTypeOutput
     {
         $ProcessTypeEntity = new ProcessTypeEntity('', $input->id);
 
