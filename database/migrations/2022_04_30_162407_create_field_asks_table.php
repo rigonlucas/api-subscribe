@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignIdFor(\App\Models\FieldGroups::class);
             $table->string('name', 255);
-            $table->enum('field_type', \App\Enums\FieldTypeEnum::all());
+            $table->enum('field_type', \App\Core\Support\Enums\FieldTypeEnum::all());
             $table->string('format_mask', 100);
             $table->boolean('required');
             $table->string('required_help_text', 255);

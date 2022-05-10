@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Process::class);
             $table->foreignIdFor(
                 $processPeopleClass,
-                \App\Enums\ForeignKeyMutatorEnum::findByCaseName($processPeopleClass)
+                \App\Core\Support\Enums\ForeignKeyMutatorEnum::findByCaseName($processPeopleClass)
             );
             $table->timestampsTz();
             $table->softDeletesTz();

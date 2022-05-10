@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Process;
 
-use App\Core\Admin\Domain\UseCases\ProcessType\CreateProcessTypeUseCase;
-use App\Core\Admin\Domain\UseCases\ProcessType\DeleteProcessTypeUseCase;
-use App\Core\Admin\Domain\UseCases\ProcessType\Inputs\CreateProcessTypeInput;
-use App\Core\Admin\Domain\UseCases\ProcessType\Inputs\DeleteProcessTypeInput;
-use App\Core\Admin\Domain\UseCases\ProcessType\Inputs\ListProcessTypeInput;
-use App\Core\Admin\Domain\UseCases\ProcessType\Inputs\RestoreProcessTypeInput;
-use App\Core\Admin\Domain\UseCases\ProcessType\Inputs\UpdateProcessTypeInput;
-use App\Core\Admin\Domain\UseCases\ProcessType\ListProcessTypeUseCase;
-use App\Core\Admin\Domain\UseCases\ProcessType\ListProcessTypeWithCacheUseCase;
-use App\Core\Admin\Domain\UseCases\ProcessType\RestoreProcessTypeUseCase;
-use App\Core\Admin\Domain\UseCases\ProcessType\UpdateProcessTypeUseCase;
-use App\Core\Admin\Infra\Support\Pagination\Inputs\PaginationInput;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\CreateProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\DeleteProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\Inputs\CreateProcessTypeInput;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\Inputs\DeleteProcessTypeInput;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\Inputs\ListProcessTypeInput;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\Inputs\RestoreProcessTypeInput;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\Inputs\UpdateProcessTypeInput;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\ListProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\ListProcessTypeWithCacheUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\RestoreProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\UpdateProcessTypeUseCase;
+use App\Core\Support\Pagination\Inputs\PaginationInput;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

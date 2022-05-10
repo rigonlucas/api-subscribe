@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Payment;
 
-use App\Core\Admin\Domain\UseCases\PaymentValue\CreatePaymentValueUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentValue\DeletePaymentValueUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentValue\Inputs\CreatePaymentValueInput;
-use App\Core\Admin\Domain\UseCases\PaymentValue\Inputs\DeletePaymentValueInput;
-use App\Core\Admin\Domain\UseCases\PaymentValue\Inputs\ListPaymentValueInput;
-use App\Core\Admin\Domain\UseCases\PaymentValue\Inputs\RestorePaymentValueInput;
-use App\Core\Admin\Domain\UseCases\PaymentValue\Inputs\UpdatePaymentValueInput;
-use App\Core\Admin\Domain\UseCases\PaymentValue\ListPaymentValueUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentValue\ListPaymentValueWithCacheUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentValue\RestorePaymentValueUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentValue\UpdatePaymentValueUseCase;
-use App\Core\Admin\Infra\Support\Pagination\Inputs\PaginationInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\CreatePaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\DeletePaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\Inputs\CreatePaymentValueInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\Inputs\DeletePaymentValueInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\Inputs\ListPaymentValueInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\Inputs\RestorePaymentValueInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\Inputs\UpdatePaymentValueInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\ListPaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\ListPaymentValueWithCacheUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\RestorePaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\UpdatePaymentValueUseCase;
+use App\Core\Support\Pagination\Inputs\PaginationInput;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

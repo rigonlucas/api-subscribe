@@ -2,54 +2,46 @@
 
 namespace App\Providers;
 
-use App\Core\Admin\Domain\Contracts\Repository\FieldGroup\FieldGroupReadInterface;
-use App\Core\Admin\Domain\Contracts\Repository\FieldGroup\FieldGroupWriteInterface;
-
-use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeReadInterface;
-use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
-
-use App\Core\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueReadInterface;
-use App\Core\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueWriteInterface;
-
-use App\Core\Admin\Domain\Contracts\Repository\ProcessType\ProcessTypeReadInterface;
-use App\Core\Admin\Domain\Contracts\Repository\ProcessType\ProcessTypeWriteInterface;
-
-use App\Core\Admin\Domain\UseCases\FieldGroup\CreateFieldGroupUseCase;
-use App\Core\Admin\Domain\UseCases\FieldGroup\DeleteFieldGroupUseCase;
-use App\Core\Admin\Domain\UseCases\FieldGroup\ListFieldGroupUseCase;
-use App\Core\Admin\Domain\UseCases\FieldGroup\ListFieldGroupWithCacheUseCase;
-use App\Core\Admin\Domain\UseCases\FieldGroup\RestoreFieldGroupUseCase;
-use App\Core\Admin\Domain\UseCases\FieldGroup\UpdateFieldGroupUseCase;
-
-use App\Core\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentType\DeletePaymentTypeUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeWithCacheUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentType\RestorePaymentTypeUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentType\UpdatePaymentTypeUseCase;
-
-use App\Core\Admin\Domain\UseCases\PaymentValue\CreatePaymentValueUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentValue\DeletePaymentValueUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentValue\ListPaymentValueUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentValue\ListPaymentValueWithCacheUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentValue\RestorePaymentValueUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentValue\UpdatePaymentValueUseCase;
-
-use App\Core\Admin\Domain\UseCases\ProcessType\CreateProcessTypeUseCase;
-use App\Core\Admin\Domain\UseCases\ProcessType\DeleteProcessTypeUseCase;
-use App\Core\Admin\Domain\UseCases\ProcessType\ListProcessTypeUseCase;
-use App\Core\Admin\Domain\UseCases\ProcessType\ListProcessTypeWithCacheUseCase;
-use App\Core\Admin\Domain\UseCases\ProcessType\RestoreProcessTypeUseCase;
-use App\Core\Admin\Domain\UseCases\ProcessType\UpdateProcessTypeUseCase;
-
-use App\Core\Admin\Infra\Respository\FieldGroup\FieldGroupRead;
-use App\Core\Admin\Infra\Respository\FieldGroup\FieldGroupWrite;
-use App\Core\Admin\Infra\Respository\PaymentType\PaymentTypeWrite;
-use App\Core\Admin\Infra\Respository\PaymentValue\PaymentValueRead;
-use App\Core\Admin\Infra\Respository\PaymentValue\PaymentValueWrite;
-
-use App\Core\Admin\Infra\Respository\ProcessType\ProcessTypeRead;
-use App\Core\Admin\Infra\Respository\ProcessType\ProcessTypeWrite;
+use App\Core\Applications\Admin\Domain\Contracts\Repository\FieldGroup\FieldGroupReadInterface;
+use App\Core\Applications\Admin\Domain\Contracts\Repository\FieldGroup\FieldGroupWriteInterface;
+use App\Core\Applications\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeReadInterface;
+use App\Core\Applications\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
+use App\Core\Applications\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueReadInterface;
+use App\Core\Applications\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueWriteInterface;
+use App\Core\Applications\Admin\Domain\Contracts\Repository\ProcessType\ProcessTypeReadInterface;
+use App\Core\Applications\Admin\Domain\Contracts\Repository\ProcessType\ProcessTypeWriteInterface;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\CreateFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\DeleteFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\ListFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\ListFieldGroupWithCacheUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\RestoreFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\UpdateFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\DeletePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\ListPaymentTypeWithCacheUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\RestorePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\UpdatePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\CreatePaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\DeletePaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\ListPaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\ListPaymentValueWithCacheUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\RestorePaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentValue\UpdatePaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\CreateProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\DeleteProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\ListProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\ListProcessTypeWithCacheUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\RestoreProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\ProcessType\UpdateProcessTypeUseCase;
+use App\Core\Applications\Admin\Infra\Respository\FieldGroup\FieldGroupRead;
+use App\Core\Applications\Admin\Infra\Respository\FieldGroup\FieldGroupWrite;
+use App\Core\Applications\Admin\Infra\Respository\PaymentType\PaymentTypeRead;
+use App\Core\Applications\Admin\Infra\Respository\PaymentType\PaymentTypeWrite;
+use App\Core\Applications\Admin\Infra\Respository\PaymentValue\PaymentValueRead;
+use App\Core\Applications\Admin\Infra\Respository\PaymentValue\PaymentValueWrite;
+use App\Core\Applications\Admin\Infra\Respository\ProcessType\ProcessTypeRead;
+use App\Core\Applications\Admin\Infra\Respository\ProcessType\ProcessTypeWrite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -97,7 +89,7 @@ class AppServiceProvider extends ServiceProvider
         )->needs(
             PaymentTypeReadInterface::class
         )->give(
-            ProcessTypeRead::class
+            PaymentTypeRead::class
         );
     }
     private function bindPaymentValue(): void

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Field;
 
-use App\Core\Admin\Domain\UseCases\FieldGroup\CreateFieldGroupUseCase;
-use App\Core\Admin\Domain\UseCases\FieldGroup\DeleteFieldGroupUseCase;
-use App\Core\Admin\Domain\UseCases\FieldGroup\Inputs\CreateFieldGroupInput;
-use App\Core\Admin\Domain\UseCases\FieldGroup\Inputs\DeleteFieldGroupInput;
-use App\Core\Admin\Domain\UseCases\FieldGroup\Inputs\ListFieldGroupInput;
-use App\Core\Admin\Domain\UseCases\FieldGroup\Inputs\RestoreFieldGroupInput;
-use App\Core\Admin\Domain\UseCases\FieldGroup\Inputs\UpdateFieldGroupInput;
-use App\Core\Admin\Domain\UseCases\FieldGroup\ListFieldGroupUseCase;
-use App\Core\Admin\Domain\UseCases\FieldGroup\ListFieldGroupWithCacheUseCase;
-use App\Core\Admin\Domain\UseCases\FieldGroup\RestoreFieldGroupUseCase;
-use App\Core\Admin\Domain\UseCases\FieldGroup\UpdateFieldGroupUseCase;
-use App\Core\Admin\Infra\Support\Pagination\Inputs\PaginationInput;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\CreateFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\DeleteFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\Inputs\CreateFieldGroupInput;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\Inputs\DeleteFieldGroupInput;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\Inputs\ListFieldGroupInput;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\Inputs\RestoreFieldGroupInput;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\Inputs\UpdateFieldGroupInput;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\ListFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\ListFieldGroupWithCacheUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\RestoreFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\FieldGroup\UpdateFieldGroupUseCase;
+use App\Core\Support\Pagination\Inputs\PaginationInput;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

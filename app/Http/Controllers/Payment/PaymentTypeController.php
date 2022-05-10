@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Payment;
 
-use App\Core\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentType\DeletePaymentTypeUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\CreatePaymentTypeInput;
-use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\DeletePaymentTypeInput;
-use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\ListPaymentTypeInput;
-use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\RestorePaymentTypeInput;
-use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\UpdatePaymentTypeInput;
-use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeWithCacheUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentType\RestorePaymentTypeUseCase;
-use App\Core\Admin\Domain\UseCases\PaymentType\UpdatePaymentTypeUseCase;
-use App\Core\Admin\Infra\Support\Pagination\Inputs\PaginationInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\DeletePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\Inputs\CreatePaymentTypeInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\Inputs\DeletePaymentTypeInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\Inputs\ListPaymentTypeInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\Inputs\RestorePaymentTypeInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\Inputs\UpdatePaymentTypeInput;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\ListPaymentTypeWithCacheUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\RestorePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\UseCases\PaymentType\UpdatePaymentTypeUseCase;
+use App\Core\Support\Pagination\Inputs\PaginationInput;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
