@@ -18,7 +18,7 @@ class UpdateFieldGroupUseCase
 
     public function execute(UpdateFieldGroupInput $input): UpdateFieldGroupOutput
     {
-        $fieldGroupTypeEntity = new FieldGroupEntity($input->name, $input->description, $input->id);
+        $fieldGroupTypeEntity = new FieldGroupEntity($input->title, $input->description, $input->id);
 
         $fieldGroupId = $this->fieldGroupTypeWrite->update($fieldGroupTypeEntity);
 

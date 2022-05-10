@@ -14,17 +14,17 @@ class FieldGroupRead extends PreparePagination implements FieldGroupReadInterfac
 {
     use CacheManager;
 
-    public function listPaginated(PaginationInput $paginationInput, ?string $name = null): array
+    public function listPaginated(PaginationInput $paginationInput, ?string $title = null): array
     {
         $paymentTypeModel = FieldGroups::withTrashed()->select([
             'id',
-            'name',
+            'title',
             'created_at',
             'deleted_at'
         ]);
         $paymentTypeModel->when(
-            $name,
-            fn($query) => $query->where('name', 'like', '%'.$name.'%')
+            $title,
+            fn($query) => $query->where('title', 'like', '%'.$title.'%')
         );
 
         return $this->preparePagination(
@@ -37,11 +37,11 @@ class FieldGroupRead extends PreparePagination implements FieldGroupReadInterfac
     public function listAllCached(): array
     {
         return $this->createCache(
-            CacheKeysEnum::PREFIX_PAYMENT_TYPE->value,
-            DB::table('payment_types')
-                ->select(['id', 'name'])
+            CacheKeysEnum::PREFIX_FIELD_GROUP->value,
+            DB::table('field_groups')
+                ->select(['id', 'title'])
                 ->whereNull('deleted_at')
-                ->orderBy('name')
+                ->orderBy('title')
         )->toArray();
     }
 }

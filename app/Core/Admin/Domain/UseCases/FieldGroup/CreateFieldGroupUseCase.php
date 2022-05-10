@@ -17,7 +17,7 @@ class CreateFieldGroupUseCase
 
     public function execute(CreateFieldGroupInput $input): CreateFieldGroupOutput
     {
-        $fieldGroupEntity = new FieldGroupEntity($input->name, $input->description);
+        $fieldGroupEntity = new FieldGroupEntity($input->title, $input->description);
 
         $paymentId = $this->fieldGroupWrite->store($fieldGroupEntity);
 

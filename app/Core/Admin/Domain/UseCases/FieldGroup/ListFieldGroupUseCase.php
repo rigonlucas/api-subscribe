@@ -17,7 +17,7 @@ class ListFieldGroupUseCase
 
     public function execute(ListFieldGroupInput $input, PaginationInput $paginationInput): ListFieldGroupOutput
     {
-        list($data, $meta) = $this->fieldGroupRead->listPaginated($paginationInput, $input->searchName);
+        list($data, $meta) = $this->fieldGroupRead->listPaginated($paginationInput, $input->searchTitleName);
         return new ListFieldGroupOutput($data, $meta);
     }
 }

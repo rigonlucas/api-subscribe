@@ -14,7 +14,7 @@ class PaymentTypeWrite implements PaymentTypeWriteInterface
 
     public function store(PaymentTypeEntity $paymentTypeEntity): string
     {
-        $paymentTypeModel = PaymentType::create([
+        $paymentTypeModel = PaymentType::query()->create([
             'name' => $paymentTypeEntity->name
         ]);
         if ($paymentTypeModel) {

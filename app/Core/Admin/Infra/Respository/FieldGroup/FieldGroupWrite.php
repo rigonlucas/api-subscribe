@@ -12,60 +12,62 @@ class FieldGroupWrite implements FieldGroupWriteInterface
 {
     use CacheManager;
 
-    public function store(FieldGroupEntity $paymentTypeEntity): string
+    public function store(FieldGroupEntity $fieldGroupEntity): string
     {
-        $paymentTypeModel = FieldGroups::create([
-            'name' => $paymentTypeEntity->name
+        $fieldGroupModel = FieldGroups::query()->create([
+            'title' => $fieldGroupEntity->title,
+            'description' => $fieldGroupEntity->description,
         ]);
-        if ($paymentTypeModel) {
+        if ($fieldGroupModel) {
             $this->deleteCache(CacheKeysEnum::PREFIX_FIELD_GROUP->value);
         }
-        return $paymentTypeModel->id;
+        return $fieldGroupModel->id;
     }
 
-    public function update(FieldGroupEntity $paymentTypeEntity): ?string
+    public function update(FieldGroupEntity $fieldGroupEntity): ?string
     {
-        $paymentTypeModel = FieldGroups::query()->find($paymentTypeEntity->id);
-        if (!$paymentTypeModel) {
+        $fieldGroupModel = FieldGroups::query()->find($fieldGroupEntity->id);
+        if (!$fieldGroupModel) {
             return null;
         }
-        $updatedRegister = $paymentTypeModel->update([
-            'name' => $paymentTypeEntity->name
+        $updatedRegister = $fieldGroupModel->update([
+            'title' => $fieldGroupEntity->title,
+            'description' => $fieldGroupEntity->description,
         ]);
 
         if ($updatedRegister > 0) {
             $this->deleteCache(CacheKeysEnum::PREFIX_FIELD_GROUP->value);
         }
 
-        return $paymentTypeModel->id;
+        return $fieldGroupModel->id;
     }
 
-    public function delete(FieldGroupEntity $paymentTypeEntity): ?string
+    public function delete(FieldGroupEntity $fieldGroupEntity): ?string
     {
-        $paymentTypeModel = FieldGroups::query()->find($paymentTypeEntity->id);
-        if (!$paymentTypeModel) {
+        $fieldGroupModel = FieldGroups::query()->find($fieldGroupEntity->id);
+        if (!$fieldGroupModel) {
             return null;
         }
-        $deletedItem = $paymentTypeModel->delete();
+        $deletedItem = $fieldGroupModel->delete();
         if ($deletedItem) {
             $this->deleteCache(CacheKeysEnum::PREFIX_FIELD_GROUP->value);
         }
 
-        return $paymentTypeModel->id;
+        return $fieldGroupModel->id;
     }
 
-    public function restore(FieldGroupEntity $paymentTypeEntity): ?string
+    public function restore(FieldGroupEntity $fieldGroupEntity): ?string
     {
-        $paymentTypeModel = FieldGroups::onlyTrashed()->find($paymentTypeEntity->id);
-        if (!$paymentTypeModel) {
+        $fieldGroupModel = FieldGroups::onlyTrashed()->find($fieldGroupEntity->id);
+        if (!$fieldGroupModel) {
             return null;
         }
-        $restoreditem = $paymentTypeModel->restore();
+        $restoreditem = $fieldGroupModel->restore();
 
         if ($restoreditem) {
             $this->deleteCache(CacheKeysEnum::PREFIX_FIELD_GROUP->value);
         }
 
-        return $paymentTypeModel->id;
+        return $fieldGroupModel->id;
     }
 }
