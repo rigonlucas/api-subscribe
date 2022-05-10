@@ -4,9 +4,9 @@ namespace App\Core\Admin\Domain\UseCases\FieldGroup;
 
 use App\Core\Admin\Domain\Contracts\Repository\FieldGroup\FieldGroupWriteInterface;
 use App\Core\Admin\Domain\Entities\Field\FieldGroupEntity;
-use App\Core\Admin\Domain\Exceptions\FieldGroup\FieldGroupNotFoundException;
 use App\Core\Admin\Domain\UseCases\FieldGroup\Inputs\UpdateFieldGroupInput;
 use App\Core\Admin\Domain\UseCases\FieldGroup\Outputs\UpdateFieldGroupOutput;
+use App\Core\Admin\Infra\Exceptions\FieldGroup\FieldGroupNotFoundException;
 
 class UpdateFieldGroupUseCase
 {

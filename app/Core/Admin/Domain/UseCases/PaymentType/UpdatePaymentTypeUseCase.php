@@ -5,10 +5,10 @@ namespace App\Core\Admin\Domain\UseCases\PaymentType;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\ProcessTypeWriteInterface;
 use App\Core\Admin\Domain\Entities\Payment\PaymentTypeEntity;
-use App\Core\Admin\Domain\Exceptions\PaymentType\PaymentTypeNotFoundException;
 use App\Core\Admin\Domain\Exceptions\PaymentType\ProcessTypeNotFoundException;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\UpdatePaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\Outputs\UpdatePaymentTypeOutput;
+use App\Core\Admin\Infra\Exceptions\PaymentType\PaymentTypeNotFoundException;
 
 class UpdatePaymentTypeUseCase
 {

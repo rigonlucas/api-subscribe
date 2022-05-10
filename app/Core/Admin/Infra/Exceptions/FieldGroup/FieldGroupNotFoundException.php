@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Admin\Domain\Exceptions\FieldGroup;
+namespace App\Core\Admin\Infra\Exceptions\FieldGroup;
 
 class FieldGroupNotFoundException extends \Exception
 {

@@ -4,9 +4,9 @@ namespace App\Core\Admin\Domain\UseCases\PaymentType;
 
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
 use App\Core\Admin\Domain\Entities\Payment\PaymentTypeEntity;
-use App\Core\Admin\Domain\Exceptions\PaymentType\PaymentTypeNotFoundException;
 use App\Core\Admin\Domain\UseCases\PaymentType\Inputs\RestorePaymentTypeInput;
 use App\Core\Admin\Domain\UseCases\PaymentType\Outputs\RestorePaymentTypeOutput;
+use App\Core\Admin\Infra\Exceptions\PaymentType\PaymentTypeNotFoundException;
 
 class RestorePaymentTypeUseCase
 {

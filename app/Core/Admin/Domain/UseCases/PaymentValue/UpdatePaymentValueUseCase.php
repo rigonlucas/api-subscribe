@@ -4,9 +4,9 @@ namespace App\Core\Admin\Domain\UseCases\PaymentValue;
 
 use App\Core\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueWriteInterface;
 use App\Core\Admin\Domain\Entities\Payment\PaymentValueEntity;
-use App\Core\Admin\Domain\Exceptions\PaymentValue\PaymentValueNotFoundException;
 use App\Core\Admin\Domain\UseCases\PaymentValue\Inputs\UpdatePaymentValueInput;
 use App\Core\Admin\Domain\UseCases\PaymentValue\Outputs\UpdatePaymentValueOutput;
+use App\Core\Admin\Infra\Exceptions\PaymentValue\PaymentValueNotFoundException;
 
 class UpdatePaymentValueUseCase
 {
