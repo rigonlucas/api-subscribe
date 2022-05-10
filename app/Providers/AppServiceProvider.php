@@ -85,7 +85,10 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->when(
-            [ListPaymentTypeUseCase::class, ListPaymentTypeWithCacheUseCase::class]
+            [
+                ListPaymentTypeUseCase::class,
+                ListPaymentTypeWithCacheUseCase::class
+            ]
         )->needs(
             PaymentTypeReadInterface::class
         )->give(
@@ -108,7 +111,10 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->when(
-            [ListPaymentValueUseCase::class, ListPaymentValueWithCacheUseCase::class]
+            [
+                ListPaymentValueUseCase::class,
+                ListPaymentValueWithCacheUseCase::class
+            ]
         )->needs(
             PaymentValueReadInterface::class
         )->give(
@@ -131,7 +137,10 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->when(
-            [ListProcessTypeUseCase::class, ListProcessTypeWithCacheUseCase::class]
+            [
+                ListProcessTypeUseCase::class,
+                ListProcessTypeWithCacheUseCase::class
+            ]
         )->needs(
             ProcessTypeReadInterface::class
         )->give(
@@ -154,7 +163,10 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->when(
-            [ListFieldGroupUseCase::class, ListFieldGroupWithCacheUseCase::class]
+            [
+                ListFieldGroupUseCase::class,
+                ListFieldGroupWithCacheUseCase::class
+            ]
         )->needs(
             FieldGroupReadInterface::class
         )->give(
