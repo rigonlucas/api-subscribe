@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Core\Admin\Domain\Contracts\Repository\FieldGroup\FieldGroupReadInterface;
+use App\Core\Admin\Domain\Contracts\Repository\FieldGroup\FieldGroupWriteInterface;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeReadInterface;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeWriteInterface;
 use App\Core\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueReadInterface;
@@ -9,6 +11,12 @@ use App\Core\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueWriteInt
 use App\Core\Admin\Domain\Contracts\Repository\ProcessType\ProcessTypeReadInterface;
 use App\Core\Admin\Domain\Contracts\Repository\ProcessType\ProcessTypeWriteInterface;
 
+use App\Core\Admin\Domain\UseCases\FieldGroup\CreateFieldGroupUseCase;
+use App\Core\Admin\Domain\UseCases\FieldGroup\DeleteFieldGroupUseCase;
+use App\Core\Admin\Domain\UseCases\FieldGroup\ListFieldGroupUseCase;
+use App\Core\Admin\Domain\UseCases\FieldGroup\ListFieldGroupWithCacheUseCase;
+use App\Core\Admin\Domain\UseCases\FieldGroup\RestoreFieldGroupUseCase;
+use App\Core\Admin\Domain\UseCases\FieldGroup\UpdateFieldGroupUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\DeletePaymentTypeUseCase;
 use App\Core\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
@@ -30,6 +38,8 @@ use App\Core\Admin\Domain\UseCases\ProcessType\ListProcessTypeWithCacheUseCase;
 use App\Core\Admin\Domain\UseCases\ProcessType\RestoreProcessTypeUseCase;
 use App\Core\Admin\Domain\UseCases\ProcessType\UpdateProcessTypeUseCase;
 
+use App\Core\Admin\Infra\Respository\FieldGroup\FieldGroupRead;
+use App\Core\Admin\Infra\Respository\FieldGroup\FieldGroupWrite;
 use App\Core\Admin\Infra\Respository\PaymentType\PaymentTypeWrite;
 use App\Core\Admin\Infra\Respository\PaymentValue\PaymentValueRead;
 use App\Core\Admin\Infra\Respository\PaymentValue\PaymentValueWrite;
@@ -60,6 +70,7 @@ class AppServiceProvider extends ServiceProvider
         $this->bindPaymentType();
         $this->bindPaymentValue();
         $this->bindProcessType();
+        $this->bindFieldGroup();
     }
 
     private function bindPaymentType(): void
@@ -129,6 +140,29 @@ class AppServiceProvider extends ServiceProvider
             ProcessTypeReadInterface::class
         )->give(
             ProcessTypeRead::class
+        );
+    }
+    private function bindFieldGroup(): void
+    {
+        $this->app->when(
+            [
+                CreateFieldGroupUseCase::class,
+                UpdateFieldGroupUseCase::class,
+                RestoreFieldGroupUseCase::class,
+                DeleteFieldGroupUseCase::class
+            ]
+        )->needs(
+            FieldGroupWriteInterface::class
+        )->give(
+            FieldGroupWrite::class
+        );
+
+        $this->app->when(
+            [ListFieldGroupUseCase::class, ListFieldGroupWithCacheUseCase::class]
+        )->needs(
+            FieldGroupReadInterface::class
+        )->give(
+            FieldGroupRead::class
         );
     }
 }
