@@ -2,7 +2,7 @@
 
 namespace App\Core\Applications\Admin\Infra\Respository\ProcessType;
 
-use App\Core\Applications\Admin\Domain\Contracts\Repository\ProcessType\ProcessTypeReadInterface;
+use App\Core\Applications\Admin\Domain\ProcessType\Contracts\Repository\ProcessTypeReadInterface;
 use App\Core\Applications\Admin\Infra\Enums\CacheKeysEnum;
 use App\Core\Support\Cache\CacheManager;
 use App\Core\Support\Pagination\Inputs\PaginationInput;

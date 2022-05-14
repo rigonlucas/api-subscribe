@@ -2,7 +2,7 @@
 
 namespace App\Core\Applications\Admin\Infra\Respository\PaymentValue;
 
-use App\Core\Applications\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueReadInterface;
+use App\Core\Applications\Admin\Domain\PaymentValue\Contracts\Repository\PaymentValueReadInterface;
 use App\Core\Applications\Admin\Infra\Enums\CacheKeysEnum;
 use App\Core\Support\Cache\CacheManager;
 use App\Core\Support\Pagination\Inputs\PaginationInput;

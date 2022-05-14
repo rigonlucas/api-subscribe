@@ -2,8 +2,11 @@
 
 namespace App\Core\Applications\Admin\Infra\Respository\FieldGroup;
 
-use App\Core\Applications\Admin\Domain\Contracts\Repository\FieldGroup\FieldGroupWriteInterface;
-use App\Core\Applications\Admin\Domain\Entities\Field\FieldGroupEntity;
+use App\Core\Applications\Admin\Domain\FieldGroup\Contracts\Repository\FieldGroupWriteInterface;
+use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Delete\Entities\FieldGroupDeleteEntity;
+use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Restore\Entities\FieldGroupRestoreEntity;
+use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\Entities\FieldGroupStoreEntity;
+use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Update\Entities\FieldGroupUpdateEntity;
 use App\Core\Applications\Admin\Infra\Enums\CacheKeysEnum;
 use App\Core\Support\Cache\CacheManager;
 use App\Models\FieldGroups;
@@ -12,11 +15,11 @@ class FieldGroupWrite implements FieldGroupWriteInterface
 {
     use CacheManager;
 
-    public function store(FieldGroupEntity $fieldGroupEntity): string
+    public function store(FieldGroupStoreEntity $fieldGroupStoreEntity): string
     {
         $fieldGroupModel = FieldGroups::query()->create([
-            'title' => $fieldGroupEntity->title,
-            'description' => $fieldGroupEntity->description,
+            'title' => $fieldGroupStoreEntity->title,
+            'description' => $fieldGroupStoreEntity->description,
         ]);
         if ($fieldGroupModel) {
             $this->deleteCache(CacheKeysEnum::PREFIX_FIELD_GROUP->value);
@@ -24,15 +27,15 @@ class FieldGroupWrite implements FieldGroupWriteInterface
         return $fieldGroupModel->id;
     }
 
-    public function update(FieldGroupEntity $fieldGroupEntity): ?string
+    public function update(FieldGroupUpdateEntity $fieldGroupUpdateEntity): ?string
     {
-        $fieldGroupModel = FieldGroups::query()->find($fieldGroupEntity->id);
+        $fieldGroupModel = FieldGroups::query()->find($fieldGroupUpdateEntity->id);
         if (!$fieldGroupModel) {
             return null;
         }
         $updatedRegister = $fieldGroupModel->update([
-            'title' => $fieldGroupEntity->title,
-            'description' => $fieldGroupEntity->description,
+            'title' => $fieldGroupUpdateEntity->title,
+            'description' => $fieldGroupUpdateEntity->description,
         ]);
 
         if ($updatedRegister > 0) {
@@ -42,9 +45,9 @@ class FieldGroupWrite implements FieldGroupWriteInterface
         return $fieldGroupModel->id;
     }
 
-    public function delete(FieldGroupEntity $fieldGroupEntity): ?string
+    public function delete(FieldGroupDeleteEntity $fieldGroupDeleteEntity): ?string
     {
-        $fieldGroupModel = FieldGroups::query()->find($fieldGroupEntity->id);
+        $fieldGroupModel = FieldGroups::query()->find($fieldGroupDeleteEntity->id);
         if (!$fieldGroupModel) {
             return null;
         }
@@ -56,9 +59,9 @@ class FieldGroupWrite implements FieldGroupWriteInterface
         return $fieldGroupModel->id;
     }
 
-    public function restore(FieldGroupEntity $fieldGroupEntity): ?string
+    public function restore(FieldGroupRestoreEntity $fieldGroupRestoreEntity): ?string
     {
-        $fieldGroupModel = FieldGroups::onlyTrashed()->find($fieldGroupEntity->id);
+        $fieldGroupModel = FieldGroups::onlyTrashed()->find($fieldGroupRestoreEntity->id);
         if (!$fieldGroupModel) {
             return null;
         }

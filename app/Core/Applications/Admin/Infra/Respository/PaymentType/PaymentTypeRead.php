@@ -2,7 +2,7 @@
 
 namespace App\Core\Applications\Admin\Infra\Respository\PaymentType;
 
-use App\Core\Applications\Admin\Domain\Contracts\Repository\PaymentType\PaymentTypeReadInterface;
+use App\Core\Applications\Admin\Domain\PaymentType\Contracts\Repository\PaymentTypeReadInterface;
 use App\Core\Applications\Admin\Infra\Enums\CacheKeysEnum;
 use App\Core\Support\Cache\CacheManager;
 use App\Core\Support\Pagination\Inputs\PaginationInput;

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Payment;
 
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\CreatePaymentTypeUseCase;
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\DeletePaymentTypeUseCase;
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\Inputs\CreatePaymentTypeInput;
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\Inputs\DeletePaymentTypeInput;
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\Inputs\ListPaymentTypeInput;
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\Inputs\RestorePaymentTypeInput;
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\Inputs\UpdatePaymentTypeInput;
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\ListPaymentTypeUseCase;
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\ListPaymentTypeWithCacheUseCase;
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\RestorePaymentTypeUseCase;
-use App\Core\Applications\Admin\Domain\UseCases\PaymentType\UpdatePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Delete\DeletePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Delete\Input\DeletePaymentTypeInput;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\ListCached\ListPaymentTypeWithCacheUseCase;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\ListPaginated\Input\ListPaymentTypeInput;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\ListPaginated\ListPaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Restore\Input\RestorePaymentTypeInput;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Restore\RestorePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\CreatePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\Input\CreatePaymentTypeInput;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Update\Input\UpdatePaymentTypeInput;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Update\UpdatePaymentTypeUseCase;
 use App\Core\Support\Pagination\Inputs\PaginationInput;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;

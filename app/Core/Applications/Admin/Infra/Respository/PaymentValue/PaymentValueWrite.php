@@ -2,8 +2,11 @@
 
 namespace App\Core\Applications\Admin\Infra\Respository\PaymentValue;
 
-use App\Core\Applications\Admin\Domain\Contracts\Repository\PaymentValue\PaymentValueWriteInterface;
-use App\Core\Applications\Admin\Domain\Entities\Payment\PaymentValueEntity;
+use App\Core\Applications\Admin\Domain\PaymentValue\Contracts\Repository\PaymentValueWriteInterface;
+use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Delete\Entities\PaymentValueDeleteEntity;
+use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Restore\Entities\PaymentValueRestoreEntity;
+use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\Entities\PaymentValueStoreEntity;
+use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Update\Entities\PaymentValueUpdateEntity;
 use App\Core\Applications\Admin\Infra\Enums\CacheKeysEnum;
 use App\Core\Support\Cache\CacheManager;
 use App\Models\PaymentValue;
@@ -12,11 +15,11 @@ class PaymentValueWrite implements PaymentValueWriteInterface
 {
     use CacheManager;
 
-    public function store(PaymentValueEntity $paymentValueEntity): string
+    public function store(PaymentValueStoreEntity $paymentValueStoreEntity): string
     {
         $paymentValueModel = PaymentValue::query()->create([
-            'name' => $paymentValueEntity->name,
-            'value' => $paymentValueEntity->value
+            'name' => $paymentValueStoreEntity->name,
+            'value' => $paymentValueStoreEntity->value
         ]);
         if ($paymentValueModel) {
             $this->deleteCache(CacheKeysEnum::PREFIX_PAYMENT_VALUE->value);
@@ -24,15 +27,15 @@ class PaymentValueWrite implements PaymentValueWriteInterface
         return $paymentValueModel->id;
     }
 
-    public function update(PaymentValueEntity $paymentValueEntity): ?string
+    public function update(PaymentValueUpdateEntity $paymentValueUpdateEntity): ?string
     {
-        $paymentValueModel = PaymentValue::query()->find($paymentValueEntity->id);
+        $paymentValueModel = PaymentValue::query()->find($paymentValueUpdateEntity->id);
         if (!$paymentValueModel) {
             return null;
         }
         $updatedRegister = $paymentValueModel->update([
-            'name' => $paymentValueEntity->name,
-            'value' => $paymentValueEntity->value
+            'name' => $paymentValueUpdateEntity->name,
+            'value' => $paymentValueUpdateEntity->value
         ]);
 
         if ($updatedRegister > 0) {
@@ -42,9 +45,9 @@ class PaymentValueWrite implements PaymentValueWriteInterface
         return $paymentValueModel->id;
     }
 
-    public function delete(PaymentValueEntity $paymentValueEntity): ?string
+    public function delete(PaymentValueDeleteEntity $paymentValueDeleteEntity): ?string
     {
-        $paymentValueModel = PaymentValue::query()->find($paymentValueEntity->id);
+        $paymentValueModel = PaymentValue::query()->find($paymentValueDeleteEntity->id);
         if (!$paymentValueModel) {
             return null;
         }
@@ -56,9 +59,9 @@ class PaymentValueWrite implements PaymentValueWriteInterface
         return $paymentValueModel->id;
     }
 
-    public function restore(PaymentValueEntity $paymentValueEntity): ?string
+    public function restore(PaymentValueRestoreEntity $paymentValueRestoreEntity): ?string
     {
-        $paymentValueModel = PaymentValue::onlyTrashed()->find($paymentValueEntity->id);
+        $paymentValueModel = PaymentValue::onlyTrashed()->find($paymentValueRestoreEntity->id);
         if (!$paymentValueModel) {
             return null;
         }

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Process;
 
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\CreateProcessTypeUseCase;
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\DeleteProcessTypeUseCase;
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\Inputs\CreateProcessTypeInput;
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\Inputs\DeleteProcessTypeInput;
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\Inputs\ListProcessTypeInput;
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\Inputs\RestoreProcessTypeInput;
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\Inputs\UpdateProcessTypeInput;
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\ListProcessTypeUseCase;
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\ListProcessTypeWithCacheUseCase;
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\RestoreProcessTypeUseCase;
-use App\Core\Applications\Admin\Domain\UseCases\ProcessType\UpdateProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Delete\DeleteProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Delete\Input\DeleteProcessTypeInput;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\ListCached\ListProcessTypeWithCacheUseCase;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\ListPaginated\Input\ListProcessTypeInput;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\ListPaginated\ListProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Restore\Input\RestoreProcessTypeInput;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Restore\RestoreProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\CreateProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Input\CreateProcessTypeInput;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Update\Input\UpdateProcessTypeInput;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Update\UpdateProcessTypeUseCase;
 use App\Core\Support\Pagination\Inputs\PaginationInput;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
