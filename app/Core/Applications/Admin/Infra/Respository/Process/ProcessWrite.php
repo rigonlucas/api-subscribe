@@ -7,6 +7,7 @@ use App\Core\Applications\Admin\Domain\Process\UseCases\Delete\Entities\ProcessD
 use App\Core\Applications\Admin\Domain\Process\UseCases\Restore\Entities\ProcessRestoreEntity;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Store\Entities\ProcessStoreEntity;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Update\Entities\ProcessUpdateEntity;
+use App\Core\Applications\Admin\Infra\Exceptions\ProcessType\ProcessTypeNotFoundException;
 use App\Models\Process;
 use App\Models\ProcessType;
 
@@ -33,7 +34,7 @@ class ProcessWrite implements ProcessWriteInterface
     {
         $processTypeModel = ProcessType::query()->find($processUpdateEntity->processType->id);
         if (!$processTypeModel) {
-            throw new \Exception();
+            throw new ProcessTypeNotFoundException();
         }
 
         return Process::query()->find($processUpdateEntity->id)->update([
