@@ -2,14 +2,14 @@
 
 namespace App\Http\Requests\Process;
 
-use App\Traits\RequestBooleanStringValidation;
+use App\Traits\RequestBoolStringValidation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProcessRequest extends FormRequest
 {
-    use RequestBooleanStringValidation;
+    use RequestBoolStringValidation;
 
-    private array $inputsTovalidate = [
+    private array $boleanInputs = [
         'active',
         'public'
     ];
