@@ -21,10 +21,10 @@ trait RequestBoolStringValidation
             }
         }
 
-        foreach ($this->boleanInputs as $input) {
-            $inputValue = $this->input($input);
+        foreach ($this->boleanInputs as $inputName) {
+            $inputValue = $this->input($inputName);
             if (!in_array($inputValue, $this->acceptedBool, true)) {
-                $this[$input] = match ($inputValue) {
+                $this[$inputName] = match ($inputValue) {
                     'true', '1' => true,
                     'false', '0' => false,
                     default => null,
