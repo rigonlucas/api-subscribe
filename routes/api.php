@@ -34,7 +34,7 @@ Route::domain('api.subscribe.admin.'.env('APP_URL'))
                     ->name('payment-type.update');
                 Route::delete('payments-type/{id}/delete', [PaymentTypeController::class, 'delete'])
                     ->name('payment-type.delete');
-                Route::put('payments-type/{id}/restore', [PaymentTypeController::class, 'restore'])
+                Route::patch('payments-type/{id}/restore', [PaymentTypeController::class, 'restore'])
                     ->name('payment-type.restore');
 
 
@@ -48,7 +48,7 @@ Route::domain('api.subscribe.admin.'.env('APP_URL'))
                     ->name('payment-value.update');
                 Route::delete('payments-value/{id}/delete', [PaymentValueController::class, 'delete'])
                     ->name('payment-value.delete');
-                Route::put('payments-value/{id}/restore', [PaymentValueController::class, 'restore'])
+                Route::patch('payments-value/{id}/restore', [PaymentValueController::class, 'restore'])
                     ->name('payment-value.restore');
 
 
@@ -62,7 +62,7 @@ Route::domain('api.subscribe.admin.'.env('APP_URL'))
                     ->name('process-type.update');
                 Route::delete('process-type/{id}/delete', [ProcessTypeController::class, 'delete'])
                     ->name('process-type.delete');
-                Route::put('process-type/{id}/restore', [ProcessTypeController::class, 'restore'])
+                Route::patch('process-type/{id}/restore', [ProcessTypeController::class, 'restore'])
                     ->name('process-type.restore');
 
                 Route::get('field-group/', [FieldGroupsController::class, 'index'])
@@ -75,7 +75,7 @@ Route::domain('api.subscribe.admin.'.env('APP_URL'))
                     ->name('field-group.update');
                 Route::delete('field-group/{id}/delete', [FieldGroupsController::class, 'delete'])
                     ->name('field-group.delete');
-                Route::put('field-group/{id}/restore', [FieldGroupsController::class, 'restore'])
+                Route::patch('field-group/{id}/restore', [FieldGroupsController::class, 'restore'])
                     ->name('field-group.restore');
         });
 
@@ -85,6 +85,6 @@ Route::domain('api.subscribe.admin.'.env('APP_URL'))
                 Route::post('store', [ProcessController::class, 'store'])->name('store');
                 Route::put('{id}/update', [ProcessController::class, 'update'])->name('update');
                 Route::delete('{id}/delete', [ProcessController::class, 'delete'])->name('delete');
-                Route::put('{id}/restore', [ProcessController::class, 'restore'])->name('restore');
+                Route::patch('{id}/restore', [ProcessController::class, 'restore'])->name('restore');
         });
 });
