@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Payment;
+namespace App\Http\Controllers\Admin\Payment;
 
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Delete\DeletePaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Delete\Input\DeletePaymentValueInput;
@@ -9,8 +9,8 @@ use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\ListPaginated\Input
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\ListPaginated\ListPaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Restore\Input\RestorePaymentValueInput;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Restore\RestorePaymentValueUseCase;
-use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\StorePaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\Input\StorePaymentValueInput;
+use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\StorePaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Update\Input\UpdatePaymentValueInput;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Update\UpdatePaymentValueUseCase;
 use App\Core\Support\Pagination\Inputs\PaginationInput;
@@ -18,6 +18,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+
+use function app;
+use function response;
 
 class PaymentValueController extends Controller
 {

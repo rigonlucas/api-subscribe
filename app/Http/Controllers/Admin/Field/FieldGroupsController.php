@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Field;
+namespace App\Http\Controllers\Admin\Field;
 
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Delete\DeleteFieldGroupUseCase;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Delete\Input\DeleteFieldGroupInput;
@@ -9,8 +9,8 @@ use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\ListPaginated\Input\L
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\ListPaginated\ListFieldGroupUseCase;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Restore\Input\RestoreFieldGroupInput;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Restore\RestoreFieldGroupUseCase;
-use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\StoreFieldGroupUseCase;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\Input\StoreFieldGroupInput;
+use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\StoreFieldGroupUseCase;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Update\Input\UpdateFieldGroupInput;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Update\UpdateFieldGroupUseCase;
 use App\Core\Support\Pagination\Inputs\PaginationInput;
@@ -18,6 +18,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+
+use function app;
+use function response;
 
 class FieldGroupsController extends Controller
 {

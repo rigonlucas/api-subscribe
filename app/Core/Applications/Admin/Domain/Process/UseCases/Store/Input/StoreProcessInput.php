@@ -2,13 +2,18 @@
 
 namespace App\Core\Applications\Admin\Domain\Process\UseCases\Store\Input;
 
-
 use App\Core\Applications\Admin\Infra\Exceptions\Process\FinishAtInvalidException;
 use App\Core\Applications\Admin\Infra\Exceptions\Process\StartAtInvalidException;
+use App\Core\Support\Conversions\DateTime\DateTimeConversion;
 use DateTime;
+use Exception;
 
-class StoreProcessInput
+class StoreProcessInput extends DateTimeConversion
 {
+    /**
+     * @throws StartAtInvalidException
+     * @throws FinishAtInvalidException
+     */
     public function __construct(
         public readonly string $name,
         public readonly string $description,
@@ -16,44 +21,34 @@ class StoreProcessInput
         public readonly bool $active,
         public readonly bool $public,
         public readonly string $processTypeId,
-        private string|\DateTime $startAt,
-        private string|\DateTime $finishAt,
+        private mixed $startAt,
+        private mixed $finishAt,
     )
     {
-        //verify if date can be mutable
-        $this->checkStartDate($startAt);
-        $this->checkFinishDate($finishAt);
-    }
-
-    private function checkStartDate($date)
-    {
-        $this->startAt = DateTime::createFromFormat('d/m/Y H:i:s', $date);
-        if (!$this->startAt instanceof DateTime) {
+        $this->startAt = $this->convertStringToDateTime($startAt);
+        if ($this->startAt instanceof Exception) {
             throw new StartAtInvalidException();
         }
-    }
 
-    private function checkFinishDate($date)
-    {
-        $this->finishAt = DateTime::createFromFormat('d/m/Y H:i:s', $date);
-
-        if (!$this->finishAt instanceof DateTime) {
+        $this->finishAt = $this->convertStringToDateTime($finishAt);
+        if ($this->finishAt instanceof Exception) {
             throw new FinishAtInvalidException();
         }
     }
 
+
     /**
-     * @return \DateTime|string
+     * @return DateTime|null
      */
-    public function getFinishAt(): \DateTime|string
+    public function getFinishAt(): ?DateTime
     {
         return $this->finishAt;
     }
 
     /**
-     * @return \DateTime|string
+     * @return DateTime|null
      */
-    public function getStartAt(): \DateTime|string
+    public function getStartAt(): ?DateTime
     {
         return $this->startAt;
     }

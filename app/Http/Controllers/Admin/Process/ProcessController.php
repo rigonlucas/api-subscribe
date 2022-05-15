@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Process;
+namespace App\Http\Controllers\Admin\Process;
 
 use App\Core\Applications\Admin\Domain\Process\UseCases\Store\Input\StoreProcessInput;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Store\StoreProcessUseCase;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Process\StoreProcessRequest;
+use App\Http\Requests\Admin\Process\StoreProcessRequest;
+use App\Http\Requests\Admin\Process\UpdateProcessRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
@@ -30,5 +30,10 @@ class ProcessController extends Controller
         $useCase = app(StoreProcessUseCase::class);
         $output = $useCase->execute($input);
         return response()->json(['id' => $output->id], ResponseAlias::HTTP_CREATED);
+    }
+
+    public function update(UpdateProcessRequest $request): Response
+    {
+        dd($request->all());
     }
 }

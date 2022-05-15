@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Field\FieldGroupsController;
-use App\Http\Controllers\Payment\PaymentTypeController;
-use App\Http\Controllers\Payment\PaymentValueController;
-use App\Http\Controllers\Process\ProcessController;
-use App\Http\Controllers\Process\ProcessTypeController;
+use App\Http\Controllers\Admin\Field\FieldGroupsController;
+use App\Http\Controllers\Admin\Payment\PaymentTypeController;
+use App\Http\Controllers\Admin\Payment\PaymentValueController;
+use App\Http\Controllers\Admin\Process\ProcessController;
+use App\Http\Controllers\Admin\Process\ProcessTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -82,6 +82,7 @@ Route::domain('api.subscribe.admin.'.env('APP_URL'))
         Route::prefix('process')
             ->name('process.')
             ->group(function (){
-                Route::post('/store', [ProcessController::class, 'store'])->name('store');
+                Route::post('store', [ProcessController::class, 'store'])->name('store');
+                Route::post('update', [ProcessController::class, 'update'])->name('update');
         });
 });

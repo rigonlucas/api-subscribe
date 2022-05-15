@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Process;
+namespace App\Http\Controllers\Admin\Process;
 
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Delete\DeleteProcessTypeUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Delete\Input\DeleteProcessTypeInput;
@@ -9,8 +9,8 @@ use App\Core\Applications\Admin\Domain\ProcessType\UseCases\ListPaginated\Input\
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\ListPaginated\ListProcessTypeUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Restore\Input\RestoreProcessTypeInput;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Restore\RestoreProcessTypeUseCase;
-use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\StoreProcessTypeUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Input\StoreProcessTypeInput;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\StoreProcessTypeUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Update\Input\UpdateProcessTypeInput;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Update\UpdateProcessTypeUseCase;
 use App\Core\Support\Pagination\Inputs\PaginationInput;
@@ -19,6 +19,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+
+use function app;
+use function response;
 
 class ProcessTypeController extends Controller
 {

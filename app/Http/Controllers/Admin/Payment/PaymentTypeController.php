@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Payment;
+namespace App\Http\Controllers\Admin\Payment;
 
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Delete\DeletePaymentTypeUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Delete\Input\DeletePaymentTypeInput;
@@ -9,8 +9,8 @@ use App\Core\Applications\Admin\Domain\PaymentType\UseCases\ListPaginated\Input\
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\ListPaginated\ListPaymentTypeUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Restore\Input\RestorePaymentTypeInput;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Restore\RestorePaymentTypeUseCase;
-use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\StorePaymentTypeUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\Input\StorePaymentTypeInput;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\StorePaymentTypeUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Update\Input\UpdatePaymentTypeInput;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Update\UpdatePaymentTypeUseCase;
 use App\Core\Support\Pagination\Inputs\PaginationInput;
@@ -18,6 +18,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+
+use function app;
+use function response;
 
 class PaymentTypeController extends Controller
 {
