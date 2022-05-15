@@ -9,10 +9,6 @@ class StoreProcessRequest extends FormRequest
 {
     use RequestBoolStringValidation;
 
-    /*private array $boleanInputs = [
-        'active',
-        'public'
-    ];*/
     /**
      * Determine if the user is authorized to make this request.
      *
