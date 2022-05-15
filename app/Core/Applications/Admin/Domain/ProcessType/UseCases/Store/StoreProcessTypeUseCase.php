@@ -5,8 +5,8 @@ namespace App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store;
 use App\Core\Applications\Admin\Domain\ProcessType\Contracts\Repository\ProcessTypeWriteInterface;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Delete\Entities\ProcessTypeDeleteEntity;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Entities\ProcessTypeStoreEntity;
-use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Input\CreateProcessTypeInput;
-use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Output\CreateProcessTypeOutput;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Input\StoreProcessTypeInput;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Output\StoreProcessTypeOutput;
 
 class StoreProcessTypeUseCase
 {
@@ -16,12 +16,12 @@ class StoreProcessTypeUseCase
     {
     }
 
-    public function execute(CreateProcessTypeInput $input): CreateProcessTypeOutput
+    public function execute(StoreProcessTypeInput $input): StoreProcessTypeOutput
     {
         $ProcessTypeEntity = new ProcessTypeStoreEntity($input->name, $input->description);
 
         $ProcessId = $this->ProcessTypeWrite->store($ProcessTypeEntity);
 
-        return new CreateProcessTypeOutput($ProcessId);
+        return new StoreProcessTypeOutput($ProcessId);
     }
 }

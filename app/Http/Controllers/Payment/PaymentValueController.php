@@ -10,7 +10,7 @@ use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\ListPaginated\ListP
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Restore\Input\RestorePaymentValueInput;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Restore\RestorePaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\StorePaymentValueUseCase;
-use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\Input\CreatePaymentValueInput;
+use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\Input\StorePaymentValueInput;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Update\Input\UpdatePaymentValueInput;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Update\UpdatePaymentValueUseCase;
 use App\Core\Support\Pagination\Inputs\PaginationInput;
@@ -48,7 +48,7 @@ class PaymentValueController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $input = new CreatePaymentValueInput(
+        $input = new StorePaymentValueInput(
             $request->input('name', ''),
             (float) $request->input('value', '')
         );

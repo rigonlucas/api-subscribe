@@ -10,7 +10,7 @@ use App\Core\Applications\Admin\Domain\ProcessType\UseCases\ListPaginated\ListPr
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Restore\Input\RestoreProcessTypeInput;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Restore\RestoreProcessTypeUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\StoreProcessTypeUseCase;
-use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Input\CreateProcessTypeInput;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Input\StoreProcessTypeInput;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Update\Input\UpdateProcessTypeInput;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Update\UpdateProcessTypeUseCase;
 use App\Core\Support\Pagination\Inputs\PaginationInput;
@@ -48,7 +48,7 @@ class ProcessTypeController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $input = new CreateProcessTypeInput(
+        $input = new StoreProcessTypeInput(
             $request->input('name', ''),
             $request->input('description', '')
         );

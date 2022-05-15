@@ -2,7 +2,7 @@
 
 namespace App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\Output;
 
-class CreatePaymentTypeOutput
+class StorePaymentTypeOutput
 {
     public function __construct(public readonly string $id)
     {

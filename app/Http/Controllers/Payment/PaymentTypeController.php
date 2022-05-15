@@ -10,7 +10,7 @@ use App\Core\Applications\Admin\Domain\PaymentType\UseCases\ListPaginated\ListPa
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Restore\Input\RestorePaymentTypeInput;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Restore\RestorePaymentTypeUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\StorePaymentTypeUseCase;
-use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\Input\CreatePaymentTypeInput;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\Input\StorePaymentTypeInput;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Update\Input\UpdatePaymentTypeInput;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Update\UpdatePaymentTypeUseCase;
 use App\Core\Support\Pagination\Inputs\PaginationInput;
@@ -48,7 +48,7 @@ class PaymentTypeController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $input = new CreatePaymentTypeInput($request->input('name', ''));
+        $input = new StorePaymentTypeInput($request->input('name', ''));
 
         /** @var StorePaymentTypeUseCase $useCase */
         $useCase = app(StorePaymentTypeUseCase::class);

@@ -10,7 +10,7 @@ use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\ListPaginated\ListFie
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Restore\Input\RestoreFieldGroupInput;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Restore\RestoreFieldGroupUseCase;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\StoreFieldGroupUseCase;
-use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\Input\CreateFieldGroupInput;
+use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\Input\StoreFieldGroupInput;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Update\Input\UpdateFieldGroupInput;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Update\UpdateFieldGroupUseCase;
 use App\Core\Support\Pagination\Inputs\PaginationInput;
@@ -48,7 +48,7 @@ class FieldGroupsController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $input = new CreateFieldGroupInput(
+        $input = new StoreFieldGroupInput(
             $request->input('name', ''),
             $request->input('description', '')
         );

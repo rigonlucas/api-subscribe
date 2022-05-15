@@ -2,7 +2,7 @@
 
 namespace App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\Output;
 
-class CreateFieldGroupOutput
+class StoreFieldGroupOutput
 {
     public function __construct(public readonly string $id)
     {
