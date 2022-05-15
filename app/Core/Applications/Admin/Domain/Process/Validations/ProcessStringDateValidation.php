@@ -4,10 +4,10 @@ namespace App\Core\Applications\Admin\Domain\Process\Validations;
 
 use App\Core\Applications\Admin\Infra\Exceptions\Process\FinishAtInvalidException;
 use App\Core\Applications\Admin\Infra\Exceptions\Process\StartAtInvalidException;
-use App\Core\Support\Conversions\DateTime\DateTimeConversion;
+use App\Core\Support\Conversions\DateTime\DateTimeStringConversion;
 use Exception;
 
-class ProcessDateValidation extends DateTimeConversion
+class ProcessStringDateValidation extends DateTimeStringConversion
 {
     /**
      * @throws StartAtInvalidException

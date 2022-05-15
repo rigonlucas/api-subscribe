@@ -2,13 +2,13 @@
 
 namespace App\Core\Applications\Admin\Domain\Process\UseCases\Store\Input;
 
-use App\Core\Applications\Admin\Domain\Process\Validations\ProcessDateValidation;
+use App\Core\Applications\Admin\Domain\Process\Validations\ProcessStringDateValidation;
 use App\Core\Applications\Admin\Infra\Exceptions\Process\FinishAtInvalidException;
 use App\Core\Applications\Admin\Infra\Exceptions\Process\StartAtInvalidException;
 use DateTime;
 use Exception;
 
-class StoreProcessInput extends ProcessDateValidation
+class StoreProcessInput extends ProcessStringDateValidation
 {
 
     /**

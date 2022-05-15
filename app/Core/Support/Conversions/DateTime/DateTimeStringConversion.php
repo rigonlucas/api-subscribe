@@ -5,7 +5,7 @@ namespace App\Core\Support\Conversions\DateTime;
 use DateTime;
 use Exception;
 
-class DateTimeConversion
+class DateTimeStringConversion
 {
     /**
      * @param string|null $date
