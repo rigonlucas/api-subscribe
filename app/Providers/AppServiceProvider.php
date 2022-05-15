@@ -26,6 +26,11 @@ use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\ListPaginated\ListP
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Restore\RestorePaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\StorePaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Update\UpdatePaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\Process\Contracts\Repository\ProcessWriteInterface;
+use App\Core\Applications\Admin\Domain\Process\UseCases\Delete\DeleteProcessUseCase;
+use App\Core\Applications\Admin\Domain\Process\UseCases\Restore\RestoreProcessUseCase;
+use App\Core\Applications\Admin\Domain\Process\UseCases\Store\StoreProcessUseCase;
+use App\Core\Applications\Admin\Domain\Process\UseCases\Update\UpdateProcessUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\Contracts\Repository\ProcessTypeReadInterface;
 use App\Core\Applications\Admin\Domain\ProcessType\Contracts\Repository\ProcessTypeWriteInterface;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Delete\DeleteProcessTypeUseCase;
@@ -40,6 +45,7 @@ use App\Core\Applications\Admin\Infra\Respository\PaymentType\PaymentTypeRead;
 use App\Core\Applications\Admin\Infra\Respository\PaymentType\PaymentTypeWrite;
 use App\Core\Applications\Admin\Infra\Respository\PaymentValue\PaymentValueRead;
 use App\Core\Applications\Admin\Infra\Respository\PaymentValue\PaymentValueWrite;
+use App\Core\Applications\Admin\Infra\Respository\Process\ProcessWrite;
 use App\Core\Applications\Admin\Infra\Respository\ProcessType\ProcessTypeRead;
 use App\Core\Applications\Admin\Infra\Respository\ProcessType\ProcessTypeWrite;
 use Illuminate\Support\ServiceProvider;
@@ -67,6 +73,7 @@ class AppServiceProvider extends ServiceProvider
         $this->bindPaymentValue();
         $this->bindProcessType();
         $this->bindFieldGroup();
+        $this->bindProcess();
     }
 
     private function bindPaymentType(): void
@@ -171,6 +178,32 @@ class AppServiceProvider extends ServiceProvider
             FieldGroupReadInterface::class
         )->give(
             FieldGroupRead::class
+        );
+    }
+
+    private function bindProcess()
+    {
+        $this->app->when(
+            [
+                StoreProcessUseCase::class,
+                UpdateProcessUseCase::class,
+                RestoreProcessUseCase::class,
+                DeleteProcessUseCase::class
+            ]
+        )->needs(
+            ProcessWriteInterface::class
+        )->give(
+            ProcessWrite::class
+        );
+
+        $this->app->when(
+            [
+                StoreProcessUseCase::class,
+            ]
+        )->needs(
+            ProcessTypeReadInterface::class
+        )->give(
+            ProcessTypeRead::class
         );
     }
 }

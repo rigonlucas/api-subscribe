@@ -10,7 +10,16 @@ class Process extends Model
 {
     use HasFactory;
     use Uuids;
-
+    protected $fillable = [
+        'name',
+        'description',
+        'tamb_link',
+        'is_active',
+        'is_public',
+        'process_type_id',
+        'start_at',
+        'finish_at'
+    ];
 
 
     /**
@@ -21,6 +30,6 @@ class Process extends Model
      */
     public function scopeActive($query)
     {
-        $query->where('active', 1);
+        $query->where('is_active', 1);
     }
 }

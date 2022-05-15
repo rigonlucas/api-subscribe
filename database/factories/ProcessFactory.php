@@ -23,7 +23,7 @@ class ProcessFactory extends Factory
             'name' => $this->faker->word(),
             'description' => $this->faker->text(100),
             'tamb_link' => $this->faker->text(100),
-            'active' => $this->faker->boolean(),
+            'is_active' => $this->faker->boolean(),
             'is_public' => $this->faker->boolean(),
             'start_at' => Carbon::now()->subDay(rand(1, 90)),
             'finish_at' => Carbon::now()->addDay(rand(0, 90))

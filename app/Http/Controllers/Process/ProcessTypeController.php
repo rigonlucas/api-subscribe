@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ProcessTypeController extends Controller
 {
@@ -57,7 +58,7 @@ class ProcessTypeController extends Controller
         $useCase = app(StoreProcessTypeUseCase::class);
         $output = $useCase->execute($input);
 
-        return response()->json(['id' => $output->id]);
+        return response()->json(['id' => $output->id], ResponseAlias::HTTP_CREATED);
     }
 
     public function update(Request $request, string $id): Response

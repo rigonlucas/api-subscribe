@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name', 500);
             $table->text('description');
             $table->text('tamb_link')->nullable();
-            $table->boolean('active');
+            $table->boolean('is_active');
             $table->boolean('is_public');
             $table->dateTimeTz('start_at');
             $table->dateTimeTz('finish_at');

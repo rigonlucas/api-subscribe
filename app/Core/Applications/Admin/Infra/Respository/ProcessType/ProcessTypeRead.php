@@ -2,6 +2,7 @@
 
 namespace App\Core\Applications\Admin\Infra\Respository\ProcessType;
 
+use App\Core\Applications\Admin\Domain\Process\UseCases\Store\Entities\ProcessTypeEntity;
 use App\Core\Applications\Admin\Domain\ProcessType\Contracts\Repository\ProcessTypeReadInterface;
 use App\Core\Applications\Admin\Infra\Enums\CacheKeysEnum;
 use App\Core\Support\Cache\CacheManager;
@@ -44,5 +45,17 @@ class ProcessTypeRead extends PreparePagination implements ProcessTypeReadInterf
                 ->whereNull('deleted_at')
                 ->orderBy('name')
         )->toArray();
+    }
+
+    public function findProcessTypeById(string $id): ?ProcessTypeEntity {
+        $processTypeModel = ProcessType::query()->find($id);
+        if (!$processTypeModel) {
+            return null;
+        }
+
+        return new ProcessTypeEntity(
+            $processTypeModel->id,
+            $processTypeModel->name
+        );
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Field\FieldGroupsController;
 use App\Http\Controllers\Payment\PaymentTypeController;
 use App\Http\Controllers\Payment\PaymentValueController;
+use App\Http\Controllers\Process\ProcessController;
 use App\Http\Controllers\Process\ProcessTypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -75,9 +76,7 @@ Route::domain('api.subscribe.admin.'.env('APP_URL'))->group(function () {
     });
 
     Route::prefix('process')->group(function (){
-        Route::get('/', function (){
-            dd('aaa');
-        });
+        Route::post('/store', [ProcessController::class, 'store']);
     });
 
 });
