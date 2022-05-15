@@ -10,17 +10,28 @@ trait RequestBoolStringValidation
         true,
         false
     ];
-    public function validationData(){
-        foreach ($this->boleanInputs as $item) {
-            $input = $this->input($item);
-            if (!in_array($input, $this->acceptedBool, true)) {
-                $this[$item] = match ($input) {
+
+    private array $boleanInputs;
+
+    public function validationData(): array
+    {
+        foreach ($this->rules() as $inputName => $rules) {
+            if (in_array('boolean', $rules)) {
+                $this->boleanInputs[] = $inputName;
+            }
+        }
+
+        foreach ($this->boleanInputs as $input) {
+            $inputValue = $this->input($input);
+            if (!in_array($inputValue, $this->acceptedBool, true)) {
+                $this[$input] = match ($inputValue) {
                     'true', '1' => true,
                     'false', '0' => false,
                     default => null,
                 };
             }
         }
+
         return $this->all();
     }
 }
