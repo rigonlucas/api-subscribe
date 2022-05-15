@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Process;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Store\Input\StoreProcessInput;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Store\StoreProcessUseCase;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Process\StoreProcessRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -13,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 class ProcessController extends Controller
 {
 
-    public function store (Request $request): JsonResponse
+    public function store (StoreProcessRequest $request): JsonResponse
     {
         $input = new StoreProcessInput(
             $request->input('name'),
