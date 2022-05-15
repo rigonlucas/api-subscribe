@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Applications\Admin\Domain\Process\UseCases\Store\Input;
+namespace App\Core\Applications\Admin\Domain\Process\UseCases\Update\Input;
 
 use App\Core\Applications\Admin\Domain\Process\Validations\ProcessDateValidation;
 use App\Core\Applications\Admin\Infra\Exceptions\Process\FinishAtInvalidException;
@@ -8,7 +8,7 @@ use App\Core\Applications\Admin\Infra\Exceptions\Process\StartAtInvalidException
 use DateTime;
 use Exception;
 
-class StoreProcessInput extends ProcessDateValidation
+class UpdateProcessInput extends ProcessDateValidation
 {
 
     /**
@@ -16,6 +16,7 @@ class StoreProcessInput extends ProcessDateValidation
      * @throws FinishAtInvalidException
      */
     public function __construct(
+        public readonly string $id,
         public readonly string $name,
         public readonly string $description,
         public readonly string $tambLink,

@@ -15,7 +15,7 @@ class ProcessStoreEntity
         public readonly string $tambLink,
         public readonly bool $active,
         public readonly bool $public,
-        public readonly ProcessTypeEntity $processTypeId,
+        public readonly ProcessTypeEntity $processType,
         public readonly ?\DateTime $startAt,
         public readonly ?\DateTime $finishAt,
     )

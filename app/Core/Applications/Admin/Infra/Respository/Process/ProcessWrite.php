@@ -8,6 +8,7 @@ use App\Core\Applications\Admin\Domain\Process\UseCases\Restore\Entities\Process
 use App\Core\Applications\Admin\Domain\Process\UseCases\Store\Entities\ProcessStoreEntity;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Update\Entities\ProcessUpdateEntity;
 use App\Models\Process;
+use App\Models\ProcessType;
 
 class ProcessWrite implements ProcessWriteInterface
 {
@@ -20,7 +21,7 @@ class ProcessWrite implements ProcessWriteInterface
             'tamb_link' => $processStoreEntity->tambLink,
             'is_active' => $processStoreEntity->active,
             'is_public' => $processStoreEntity->public,
-            'process_type_id' => $processStoreEntity->processTypeId->id,
+            'process_type_id' => $processStoreEntity->processType->id,
             'start_at' => $processStoreEntity->startAt,
             'finish_at' => $processStoreEntity->finishAt,
         ]);
@@ -28,9 +29,23 @@ class ProcessWrite implements ProcessWriteInterface
         return $processModel->id;
     }
 
-    public function update(ProcessUpdateEntity $processUpdateEntity): ?string
+    public function update(ProcessUpdateEntity $processUpdateEntity): bool
     {
-        // TODO: Implement update() method.
+        $processTypeModel = ProcessType::query()->find($processUpdateEntity->processType->id);
+        if (!$processTypeModel) {
+            throw new \Exception();
+        }
+
+        return Process::query()->find($processUpdateEntity->id)->update([
+            'name' => $processUpdateEntity->name,
+            'description' => $processUpdateEntity->description,
+            'tamb_link' => $processUpdateEntity->tambLink,
+            'is_active' => $processUpdateEntity->active,
+            'is_public' => $processUpdateEntity->public,
+            'process_type_id' => $processUpdateEntity->processType->id,
+            'start_at' => $processUpdateEntity->startAt,
+            'finish_at' => $processUpdateEntity->finishAt,
+        ]);
     }
 
     public function delete(ProcessDeleteEntity $processDeleteEntity): ?string

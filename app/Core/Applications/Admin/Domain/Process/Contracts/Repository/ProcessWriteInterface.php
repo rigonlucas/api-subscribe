@@ -12,7 +12,7 @@ interface ProcessWriteInterface
 {
     public function store (ProcessStoreEntity $processStoreEntity): string;
 
-    public function update (ProcessUpdateEntity $processUpdateEntity): ?string;
+    public function update (ProcessUpdateEntity $processUpdateEntity): bool;
 
     public function delete (ProcessDeleteEntity $processDeleteEntity): ?string;
 

@@ -6,7 +6,7 @@ use JetBrains\PhpStorm\Pure;
 
 trait RuleDates
 {
-    protected array $validSceneries = [
+    private array $validSceneries = [
         0 => [
             'start' => "object",
             'finish' => "NULL"

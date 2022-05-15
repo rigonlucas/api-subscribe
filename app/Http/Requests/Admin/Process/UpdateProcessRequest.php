@@ -33,8 +33,8 @@ class UpdateProcessRequest extends FormRequest
             'active' => ['required', 'boolean'],
             'public' => ['required', 'boolean'],
             'process_type_id' => ['required', 'uuid'],
-            'start_at' => ['required'],
-            'finish_at' => ['required'],
+            'start_at' => ['required', 'date_format:d/m/Y H:i:s'],
+            'finish_at' => ['nullable', 'date_format:d/m/Y H:i:s'],
         ];
     }
 }
