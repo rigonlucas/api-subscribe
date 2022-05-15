@@ -8,7 +8,7 @@ use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\Entities\FieldG
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\Input\CreateFieldGroupInput;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\Output\CreateFieldGroupOutput;
 
-class CreateFieldGroupUseCase
+class StoreFieldGroupUseCase
 {
     public function __construct(
         protected FieldGroupWriteInterface $fieldGroupWrite

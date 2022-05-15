@@ -9,7 +9,7 @@ use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\ListPaginated\Input
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\ListPaginated\ListPaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Restore\Input\RestorePaymentValueInput;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Restore\RestorePaymentValueUseCase;
-use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\CreatePaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\StorePaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\Input\CreatePaymentValueInput;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Update\Input\UpdatePaymentValueInput;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Update\UpdatePaymentValueUseCase;
@@ -53,8 +53,8 @@ class PaymentValueController extends Controller
             (float) $request->input('value', '')
         );
 
-        /** @var CreatePaymentValueUseCase $useCase */
-        $useCase = app(CreatePaymentValueUseCase::class);
+        /** @var StorePaymentValueUseCase $useCase */
+        $useCase = app(StorePaymentValueUseCase::class);
         $output = $useCase->execute($input);
 
         return response()->json(['id' => $output->id]);

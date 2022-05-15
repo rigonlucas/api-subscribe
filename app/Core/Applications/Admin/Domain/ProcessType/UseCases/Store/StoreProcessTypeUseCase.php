@@ -8,7 +8,7 @@ use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Entities\Proce
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Input\CreateProcessTypeInput;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Output\CreateProcessTypeOutput;
 
-class CreateProcessTypeUseCase
+class StoreProcessTypeUseCase
 {
     public function __construct(
         protected ProcessTypeWriteInterface $ProcessTypeWrite

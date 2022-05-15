@@ -8,7 +8,7 @@ use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Delete\DeleteFieldGro
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\ListCached\ListFieldGroupWithCacheUseCase;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\ListPaginated\ListFieldGroupUseCase;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Restore\RestoreFieldGroupUseCase;
-use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\CreateFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\StoreFieldGroupUseCase;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Update\UpdateFieldGroupUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\Contracts\Repository\PaymentTypeReadInterface;
 use App\Core\Applications\Admin\Domain\PaymentType\Contracts\Repository\PaymentTypeWriteInterface;
@@ -16,7 +16,7 @@ use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Delete\DeletePayment
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\ListCached\ListPaymentTypeWithCacheUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\ListPaginated\ListPaymentTypeUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Restore\RestorePaymentTypeUseCase;
-use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\CreatePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\StorePaymentTypeUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Update\UpdatePaymentTypeUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\Contracts\Repository\PaymentValueReadInterface;
 use App\Core\Applications\Admin\Domain\PaymentValue\Contracts\Repository\PaymentValueWriteInterface;
@@ -24,7 +24,7 @@ use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Delete\DeletePaymen
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\ListCached\ListPaymentValueWithCacheUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\ListPaginated\ListPaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Restore\RestorePaymentValueUseCase;
-use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\CreatePaymentValueUseCase;
+use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\StorePaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Update\UpdatePaymentValueUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\Contracts\Repository\ProcessTypeReadInterface;
 use App\Core\Applications\Admin\Domain\ProcessType\Contracts\Repository\ProcessTypeWriteInterface;
@@ -32,7 +32,7 @@ use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Delete\DeleteProcess
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\ListCached\ListProcessTypeWithCacheUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\ListPaginated\ListProcessTypeUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Restore\RestoreProcessTypeUseCase;
-use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\CreateProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\StoreProcessTypeUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Update\UpdateProcessTypeUseCase;
 use App\Core\Applications\Admin\Infra\Respository\FieldGroup\FieldGroupRead;
 use App\Core\Applications\Admin\Infra\Respository\FieldGroup\FieldGroupWrite;
@@ -73,7 +73,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->when(
             [
-                CreatePaymentTypeUseCase::class,
+                StorePaymentTypeUseCase::class,
                 UpdatePaymentTypeUseCase::class,
                 RestorePaymentTypeUseCase::class,
                 DeletePaymentTypeUseCase::class
@@ -99,7 +99,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->when(
             [
-                CreatePaymentValueUseCase::class,
+                StorePaymentValueUseCase::class,
                 UpdatePaymentValueUseCase::class,
                 RestorePaymentValueUseCase::class,
                 DeletePaymentValueUseCase::class
@@ -125,7 +125,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->when(
             [
-                CreateProcessTypeUseCase::class,
+                StoreProcessTypeUseCase::class,
                 UpdateProcessTypeUseCase::class,
                 RestoreProcessTypeUseCase::class,
                 DeleteProcessTypeUseCase::class
@@ -151,7 +151,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->when(
             [
-                CreateFieldGroupUseCase::class,
+                StoreFieldGroupUseCase::class,
                 UpdateFieldGroupUseCase::class,
                 RestoreFieldGroupUseCase::class,
                 DeleteFieldGroupUseCase::class

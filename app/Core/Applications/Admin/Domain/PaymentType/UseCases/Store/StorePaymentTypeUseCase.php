@@ -7,7 +7,7 @@ use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\Entities\Payme
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\Input\CreatePaymentTypeInput;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\Output\CreatePaymentTypeOutput;
 
-class CreatePaymentTypeUseCase
+class StorePaymentTypeUseCase
 {
     public function __construct(
         protected PaymentTypeWriteInterface $paymentTypeWrite

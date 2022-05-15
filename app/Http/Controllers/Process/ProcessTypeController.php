@@ -9,7 +9,7 @@ use App\Core\Applications\Admin\Domain\ProcessType\UseCases\ListPaginated\Input\
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\ListPaginated\ListProcessTypeUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Restore\Input\RestoreProcessTypeInput;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Restore\RestoreProcessTypeUseCase;
-use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\CreateProcessTypeUseCase;
+use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\StoreProcessTypeUseCase;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Store\Input\CreateProcessTypeInput;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Update\Input\UpdateProcessTypeInput;
 use App\Core\Applications\Admin\Domain\ProcessType\UseCases\Update\UpdateProcessTypeUseCase;
@@ -53,8 +53,8 @@ class ProcessTypeController extends Controller
             $request->input('description', '')
         );
 
-        /** @var CreateProcessTypeUseCase $useCase */
-        $useCase = app(CreateProcessTypeUseCase::class);
+        /** @var StoreProcessTypeUseCase $useCase */
+        $useCase = app(StoreProcessTypeUseCase::class);
         $output = $useCase->execute($input);
 
         return response()->json(['id' => $output->id]);

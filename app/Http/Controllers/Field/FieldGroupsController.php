@@ -9,7 +9,7 @@ use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\ListPaginated\Input\L
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\ListPaginated\ListFieldGroupUseCase;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Restore\Input\RestoreFieldGroupInput;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Restore\RestoreFieldGroupUseCase;
-use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\CreateFieldGroupUseCase;
+use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\StoreFieldGroupUseCase;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Store\Input\CreateFieldGroupInput;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Update\Input\UpdateFieldGroupInput;
 use App\Core\Applications\Admin\Domain\FieldGroup\UseCases\Update\UpdateFieldGroupUseCase;
@@ -53,8 +53,8 @@ class FieldGroupsController extends Controller
             $request->input('description', '')
         );
 
-        /** @var CreateFieldGroupUseCase $useCase */
-        $useCase = app(CreateFieldGroupUseCase::class);
+        /** @var StoreFieldGroupUseCase $useCase */
+        $useCase = app(StoreFieldGroupUseCase::class);
         $output = $useCase->execute($input);
 
         return response()->json(['id' => $output->id]);

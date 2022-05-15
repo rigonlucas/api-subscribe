@@ -8,7 +8,7 @@ use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\Entities\Paym
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\Input\CreatePaymentValueInput;
 use App\Core\Applications\Admin\Domain\PaymentValue\UseCases\Store\Output\CreatePaymentValueOutput;
 
-class CreatePaymentValueUseCase
+class StorePaymentValueUseCase
 {
     public function __construct(
         protected PaymentValueWriteInterface $paymentValueWrite

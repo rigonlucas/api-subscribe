@@ -9,7 +9,7 @@ use App\Core\Applications\Admin\Domain\PaymentType\UseCases\ListPaginated\Input\
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\ListPaginated\ListPaymentTypeUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Restore\Input\RestorePaymentTypeInput;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Restore\RestorePaymentTypeUseCase;
-use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\CreatePaymentTypeUseCase;
+use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\StorePaymentTypeUseCase;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Store\Input\CreatePaymentTypeInput;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Update\Input\UpdatePaymentTypeInput;
 use App\Core\Applications\Admin\Domain\PaymentType\UseCases\Update\UpdatePaymentTypeUseCase;
@@ -50,8 +50,8 @@ class PaymentTypeController extends Controller
     {
         $input = new CreatePaymentTypeInput($request->input('name', ''));
 
-        /** @var CreatePaymentTypeUseCase $useCase */
-        $useCase = app(CreatePaymentTypeUseCase::class);
+        /** @var StorePaymentTypeUseCase $useCase */
+        $useCase = app(StorePaymentTypeUseCase::class);
         $output = $useCase->execute($input);
 
         return response()->json(['id' => $output->id]);
