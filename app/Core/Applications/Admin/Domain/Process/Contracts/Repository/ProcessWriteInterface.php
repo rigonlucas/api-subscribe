@@ -7,6 +7,7 @@ use App\Core\Applications\Admin\Domain\Process\UseCases\Delete\Entities\ProcessD
 use App\Core\Applications\Admin\Domain\Process\UseCases\Restore\Entities\ProcessRestoreEntity;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Store\Entities\ProcessStoreEntity;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Update\Entities\ProcessUpdateEntity;
+use App\Core\Applications\Admin\Infra\Exceptions\Process\ProcessNotFoundException;
 
 interface ProcessWriteInterface
 {
@@ -14,7 +15,7 @@ interface ProcessWriteInterface
 
     public function update (ProcessUpdateEntity $processUpdateEntity): bool;
 
-    public function delete (ProcessDeleteEntity $processDeleteEntity): ?string;
+    public function delete (ProcessDeleteEntity $processDeleteEntity): bool|ProcessNotFoundException;
 
-    public function restore (ProcessRestoreEntity $processRestoreEntity): ?string;
+    public function restore (ProcessRestoreEntity $processRestoreEntity): ?bool;
 }

@@ -2,7 +2,7 @@
 
 namespace App\Core\Applications\Admin\Domain\Process\UseCases\Restore\Input;
 
-class DeleteProcessInput
+class RestoreProcessInput
 {
     public function __construct(public readonly string $id)
     {

@@ -84,5 +84,7 @@ Route::domain('api.subscribe.admin.'.env('APP_URL'))
             ->group(function (){
                 Route::post('store', [ProcessController::class, 'store'])->name('store');
                 Route::put('{id}/update', [ProcessController::class, 'update'])->name('update');
+                Route::delete('{id}/delete', [ProcessController::class, 'delete'])->name('delete');
+                Route::put('{id}/restore', [ProcessController::class, 'restore'])->name('restore');
         });
 });

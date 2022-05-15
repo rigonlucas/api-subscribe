@@ -7,6 +7,7 @@ use App\Core\Applications\Admin\Domain\Process\UseCases\Delete\Entities\ProcessD
 use App\Core\Applications\Admin\Domain\Process\UseCases\Restore\Entities\ProcessRestoreEntity;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Store\Entities\ProcessStoreEntity;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Update\Entities\ProcessUpdateEntity;
+use App\Core\Applications\Admin\Infra\Exceptions\Process\ProcessNotFoundException;
 use App\Core\Applications\Admin\Infra\Exceptions\ProcessType\ProcessTypeNotFoundException;
 use App\Models\Process;
 use App\Models\ProcessType;
@@ -49,13 +50,25 @@ class ProcessWrite implements ProcessWriteInterface
         ]);
     }
 
-    public function delete(ProcessDeleteEntity $processDeleteEntity): ?string
+    public function delete(ProcessDeleteEntity $processDeleteEntity): ProcessNotFoundException|bool
     {
-        // TODO: Implement delete() method.
+        $processModel = Process::query()->find($processDeleteEntity->id);
+        if (!$processModel) {
+            return new ProcessNotFoundException();
+        }
+        //check if exists subscribes
+
+
+        return $processModel->delete();
     }
 
-    public function restore(ProcessRestoreEntity $processRestoreEntity): ?string
+    public function restore(ProcessRestoreEntity $processRestoreEntity): ?bool
     {
-        // TODO: Implement restore() method.
+        $processModel = Process::onlyTrashed()->find($processRestoreEntity->id);
+        if (!$processModel) {
+            throw new ProcessNotFoundException();
+        }
+
+        return $processModel->restore();
     }
 }

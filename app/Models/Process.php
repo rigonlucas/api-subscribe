@@ -5,11 +5,14 @@ namespace App\Models;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Process extends Model
 {
     use HasFactory;
     use Uuids;
+    use SoftDeletes;
+
     protected $fillable = [
         'name',
         'description',
@@ -32,4 +35,10 @@ class Process extends Model
     {
         $query->where('is_active', 1);
     }
+
+
+    /*public function subscribes()
+    {
+        return $this->hasMany(Process)
+    }*/
 }

@@ -4,7 +4,7 @@ namespace App\Core\Applications\Admin\Domain\Process\UseCases\Delete\Output;
 
 class DeleteProcessOutput
 {
-    public function __construct(public readonly string $id)
+    public function __construct(public readonly bool $deleted)
     {
     }
 }

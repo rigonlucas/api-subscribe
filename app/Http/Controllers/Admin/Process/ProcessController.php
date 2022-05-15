@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Process;
 
+use App\Core\Applications\Admin\Domain\Process\UseCases\Delete\DeleteProcessUseCase;
+use App\Core\Applications\Admin\Domain\Process\UseCases\Delete\Input\DeleteProcessInput;
+use App\Core\Applications\Admin\Domain\Process\UseCases\Restore\Input\RestoreProcessInput;
+use App\Core\Applications\Admin\Domain\Process\UseCases\Restore\RestoreProcessUseCase;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Store\Input\StoreProcessInput;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Store\StoreProcessUseCase;
 use App\Core\Applications\Admin\Domain\Process\UseCases\Update\Input\UpdateProcessInput;
@@ -16,6 +20,12 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 class ProcessController extends Controller
 {
 
+    /**
+     * @throws \App\Core\Applications\Admin\Infra\Exceptions\Process\StartAtInvalidException
+     * @throws \App\Core\Applications\Admin\Infra\Exceptions\ProcessType\ProcessTypeNotFoundException
+     * @throws \App\Core\Applications\Admin\Infra\Exceptions\Process\FinishAtInvalidException
+     * @throws \App\Core\Applications\Admin\Infra\Exceptions\Process\ProcessDateRangeInvalidException
+     */
     public function store (StoreProcessRequest $request): JsonResponse
     {
         $input = new StoreProcessInput(
@@ -34,6 +44,10 @@ class ProcessController extends Controller
         return response()->json(['id' => $output->id], ResponseAlias::HTTP_CREATED);
     }
 
+    /**
+     * @throws \App\Core\Applications\Admin\Infra\Exceptions\Process\StartAtInvalidException
+     * @throws \App\Core\Applications\Admin\Infra\Exceptions\Process\FinishAtInvalidException
+     */
     public function update(UpdateProcessRequest $request, string $id): Response
     {
         $input = new UpdateProcessInput(
@@ -51,5 +65,29 @@ class ProcessController extends Controller
         $useCase = app(UpdateProcessUseCase::class);
         $useCase->execute($input);
         return response()->noContent();
+    }
+
+    /**
+     * @throws \App\Core\Applications\Admin\Infra\Exceptions\Process\ProcessNotFoundException
+     */
+    public function delete (string $id): Response
+    {
+        $input = new DeleteProcessInput($id);
+        /** @var DeleteProcessUseCase $useCase */
+        $useCase = app(DeleteProcessUseCase::class);
+        $useCase->execute($input);
+        return response()->noContent();
+    }
+
+    /**
+     * @throws \App\Core\Applications\Admin\Infra\Exceptions\Process\ProcessNotFoundException
+     */
+    public function restore (string $id): JsonResponse
+    {
+        $input = new RestoreProcessInput($id);
+        /** @var RestoreProcessUseCase $useCase */
+        $useCase = app(RestoreProcessUseCase::class);
+        $output = $useCase->execute($input);
+        return response()->json(['id' => $output->id]);
     }
 }
